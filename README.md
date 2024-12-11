@@ -19,6 +19,9 @@
 ## Установка зависимостей
 npm ci
 
+## Запуск json-сервера
+npm run server
+
 ## Запуск Dev-сервера
 npm run dev
 ```
