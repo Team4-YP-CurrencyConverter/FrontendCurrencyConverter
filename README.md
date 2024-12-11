@@ -13,6 +13,16 @@
 ![Static Badge](https://img.shields.io/badge/Vite-gray?logo=vite)  
 ![Static Badge](https://img.shields.io/badge/Zod-gray?logo=zod)  
 
+## Запуск Dev-сервера
+
+```bash
+## Установка зависимостей
+npm ci
+
+## Запуск Dev-сервера
+npm run dev
+```
+
 ## Команда
 
 | Имя участника | Роль | Страница GitHub |
