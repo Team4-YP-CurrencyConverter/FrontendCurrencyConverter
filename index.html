@@ -9,15 +9,37 @@
   </head>
   <body>
     <div id="app">
-      <div id="btn-container"></div>
+      <header class="header">
+        <div class="header__logo">
+          <img
+            src="./src/assets/logo-header.svg"
+            alt="Логотип CurrConverter"
+            class="header__logo-img"
+          />
+        </div>
+
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">Конвертер</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main"></main>
+
+      <footer class="footer">
+        <div class="footer__logo">
+          <img
+            src="./src/assets/logo-footer.svg"
+            alt="Логотип CurrConverter"
+            class="footer__logo-img"
+          />
+        </div>
+        <p class="footer__copy">&copy; 2024</p>
+      </footer>
     </div>
-    <template id="card">
-      <div class="card">
-        <img src="" alt="" class="card__image" />
-        <span class="card__description"> </span>
-        <span class="card__name"> </span>
-      </div>
-    </template>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
