@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,38 @@
     <title>CurrencyConverter</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="header">
+        <div class="header__logo">
+          <img
+            src="./src/assets/logo-header.svg"
+            alt="Логотип CurrConverter"
+            class="header__logo-img"
+          />
+        </div>
+
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">Конвертер</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main"></main>
+
+      <footer class="footer">
+        <div class="footer__logo">
+          <img
+            src="./src/assets/logo-footer.svg"
+            alt="Логотип CurrConverter"
+            class="footer__logo-img"
+          />
+        </div>
+        <p class="footer__copy">&copy; 2024</p>
+      </footer>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
