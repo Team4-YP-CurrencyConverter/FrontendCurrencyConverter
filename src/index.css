@@ -81,8 +81,7 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted; /* 2 */
+  text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -352,4 +351,31 @@ template {
   font-weight: 400;
   font-style: normal;
   flex-wrap: wrap;
-}/*# sourceMappingURL=index.css.map */
+}
+.arrow {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-bottom: 1px solid #202224;
+  border-right: 1px solid #202224;
+  transform: rotate(45deg);
+}
+
+.flag {
+  width: 36px;
+  height: 26px;
+  border-radius: 5px;
+}
+
+.text {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 0.1000000015px;
+}
+
+.hidden {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map */
