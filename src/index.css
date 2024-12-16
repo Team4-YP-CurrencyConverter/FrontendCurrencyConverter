@@ -81,7 +81,8 @@ a {
 abbr[title] {
   border-bottom: none; /* 1 */
   text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted; /* 2 */
 }
 
 /**
@@ -324,4 +325,31 @@ template {
   display: none;
 }
 
-/*# sourceMappingURL=index.css.map */
+@font-face {
+  font-family: "Nunito Sans";
+  src: local("Nunito Sans"), url(./NunitoSans-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  flex-wrap: wrap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: local("Nunito Sans"), url(./NunitoSans-SemiBold.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  flex-wrap: wrap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: local("Nunito Sans"), url(./NunitoSans-Medium.woff2) format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  flex-wrap: wrap;
+}
+@font-face {
+  font-family: "Nunito Sans";
+  src: local("Nunito Sans"), url(./NunitoSans-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  flex-wrap: wrap;
+}/*# sourceMappingURL=index.css.map */
