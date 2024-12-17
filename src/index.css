@@ -396,7 +396,6 @@ template {
   width: 472px;
 }
 .curconverter__heading {
-  font-family: TT Firs Neue;
   font-size: 68px;
   font-weight: 700;
   line-height: 80px;
@@ -405,8 +404,7 @@ template {
   margin: 22px 0 28px;
 }
 .curconverter__text {
-  font-family: TT Firs Neue;
-  color: #0a0610;
+  color: #202224;
   font-size: 20px;
   font-weight: 500;
   line-height: 24px;
