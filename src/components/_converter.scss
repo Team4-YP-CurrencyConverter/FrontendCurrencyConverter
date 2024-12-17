@@ -1,6 +1,7 @@
 .converter {
     background-color: $light-mono-color;
     padding: 32px 24px;
+    border-radius: 12px;
     &__inputs {
         display: flex;
         flex-direction: column;

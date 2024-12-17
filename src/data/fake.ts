@@ -27,6 +27,6 @@ const data = {
   link: 'https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg',
   description: 'Российский рубль',
 
-}
+};
 
 export default data;
