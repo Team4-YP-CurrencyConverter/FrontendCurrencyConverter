@@ -539,4 +539,8 @@ input[type=number]::placeholder {
   transform: rotate(180deg);
 }
 
+body {
+  font-family: Nunito Sans, sans-serif;
+}
+
 /*# sourceMappingURL=index.css.map */
