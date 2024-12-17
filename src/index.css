@@ -326,31 +326,23 @@ template {
 
 @font-face {
   font-family: "Nunito Sans";
-  src: local("Nunito Sans"), url(./NunitoSans-Bold.woff2) format("woff2");
+  src: local("Nunito Sans Bold"), url("vendor/fonts/NunitoSans-Bold.woff2") format("woff2"), url("vendor/fonts/NunitoSans-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
-  flex-wrap: wrap;
+  font-display: swap;
 }
 @font-face {
   font-family: "Nunito Sans";
-  src: local("Nunito Sans"), url(./NunitoSans-SemiBold.woff2) format("woff2");
+  src: local("Nunito Sans SemiBold"), url("vendor/fonts/NunitoSans-SemiBold.woff2") format("woff2"), url("vendor/fonts/NunitoSans-SemiBold.woff") format("woff");
   font-weight: 600;
-  font-style: normal;
-  flex-wrap: wrap;
+  font-display: swap;
 }
 @font-face {
   font-family: "Nunito Sans";
-  src: local("Nunito Sans"), url(./NunitoSans-Medium.woff2) format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  flex-wrap: wrap;
-}
-@font-face {
-  font-family: "Nunito Sans";
-  src: local("Nunito Sans"), url(./NunitoSans-Regular.woff2) format("woff2");
+  src: local("Nunito Sans Regular"), url("vendor/fonts/NunitoSans-Regular.woff2") format("woff2"), url("vendor/fonts/NunitoSans-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
-  flex-wrap: wrap;
+  font-display: swap;
 }
 .header {
   max-width: 1120px;
@@ -576,6 +568,4 @@ input[type=number]::placeholder {
 
 body {
   font-family: Nunito Sans, sans-serif;
-}
-
-/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
