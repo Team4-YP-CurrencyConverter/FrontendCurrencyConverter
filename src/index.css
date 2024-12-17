@@ -353,6 +353,7 @@ template {
   flex-wrap: wrap;
 }
 .header {
+  max-width: 1120px;
   padding: 0 160px;
   min-height: 135px;
   display: flex;
@@ -364,7 +365,6 @@ template {
   list-style: none;
 }
 .header__nav-link {
-  font-family: Nunito Sans, sans-serif;
   color: #202224;
   font-size: 20px;
   font-weight: 400;
@@ -378,6 +378,7 @@ template {
 }
 
 .footer {
+  max-width: 1120px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -386,7 +387,6 @@ template {
   background-color: #4379ee;
 }
 .footer__copy {
-  font-family: Nunito Sans;
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
