@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -7,7 +7,181 @@
     <title>CurrencyConverter</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="header">
+        <div class="header__logo">
+          <img
+            src="./src/assets/logo-header.svg"
+            alt="Логотип CurrConverter"
+            class="header__logo-img"
+          />
+        </div>
+
+        <nav class="header__nav">
+          <ul class="header__nav-list">
+            <li class="header__nav-item">
+              <a href="#" class="header__nav-link">Конвертер</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="main">
+        <section class="curconverter">
+          <div class="curconverter__column-left">
+            <h1 class="curconverter__heading">Конвертер валют</h1>
+            <p class="curconverter__text">
+              Для конвертации валюты по текущему курсу впишите&nbsp;сумму
+              в любое из полей справа. Можно конвертировать одновременно
+              до 4 валют.
+            </p>
+          </div>
+          <div class="converter">
+            <div class="converter__inputs">
+              <div class="converter__wrapper-input-toogle">
+                <div class="converter__input">
+                  <div class="converter__data-container">
+                    <span class="converter__currency-icon">$</span>
+                    <div class="converter__textinput-container">
+                      <input
+                        class="converter__textinput"
+                        type="number"
+                        placeholder="0.0"
+                      />
+                    </div>
+                  </div>
+                  <button class="select">
+                    <img
+                      src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                      alt="флаг государства"
+                      class="select__flag"
+                    />
+                    <span class="select__text">RUB</span>
+                    <img
+                      src="./src/assets/select-arrow.svg"
+                      class="select__arrow"
+                    />
+                  </button>
+                </div>
+                <img
+                  src="./src/assets/input-toogle.svg"
+                  alt="кнопка закрытия"
+                  class="converter__input-toogle"
+                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+              </div>
+              <div class="converter__wrapper-input-toogle">
+                <div class="converter__input">
+                  <div class="converter__data-container">
+                    <span class="converter__currency-icon">$</span>
+                    <div class="converter__textinput-container">
+                      <input
+                        class="converter__textinput"
+                        type="number"
+                        placeholder="0.0"
+                      />
+                    </div>
+                  </div>
+                  <button class="select">
+                    <img
+                      src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                      alt="флаг государства"
+                      class="select__flag"
+                    />
+                    <span class="select__text">RUB</span>
+                    <img
+                      src="./src/assets/select-arrow.svg"
+                      class="select__arrow"
+                    />
+                  </button>
+                </div>
+                <img
+                  src="./src/assets/input-toogle.svg"
+                  alt="кнопка закрытия"
+                  class="converter__input-toogle"
+                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+              </div>
+              <div class="converter__wrapper-input-toogle converter__input_hidden">
+                <div class="converter__input converter__input_hidden">
+                  <div class="converter__data-container">
+                    <span class="converter__currency-icon">$</span>
+                    <div class="converter__textinput-container">
+                      <input
+                        class="converter__textinput"
+                        type="number"
+                        placeholder="0.0"
+                      />
+                    </div>
+                  </div>
+                  <button class="select">
+                    <img
+                      src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                      alt="флаг государства"
+                      class="select__flag"
+                    />
+                    <span class="select__text">RUB</span>
+                    <img
+                      src="./src/assets/select-arrow.svg"
+                      class="select__arrow"
+                    />
+                  </button>
+                </div>
+                <img
+                  src="./src/assets/input-toogle.svg"
+                  alt="кнопка закрытия"
+                  class="converter__input-toogle"
+                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+              </div>
+              <div class="converter__wrapper-input-toogle converter__input_hidden">
+                <div class="converter__input">
+                  <div class="converter__data-container">
+                    <span class="converter__currency-icon">$</span>
+                    <div class="converter__textinput-container">
+                      <input
+                        class="converter__textinput"
+                        type="number"
+                        placeholder="0.0"
+                      />
+                    </div>
+                  </div>
+                  <button class="select">
+                    <img
+                      src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                      alt="флаг государства"
+                      class="select__flag"
+                    />
+                    <span class="select__text">RUB</span>
+                    <img
+                      src="./src/assets/select-arrow.svg"
+                      class="select__arrow"
+                    />
+                  </button>
+                </div>
+                <img
+                  src="./src/assets/input-toogle.svg"
+                  alt="кнопка закрытия"
+                  class="converter__input-toogle"
+                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+              </div>
+            </div>
+            <button class="button">
+              <span class="button__text">+</span
+              ><span class="button__text">Добавить</span>
+            </button>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="footer__logo">
+          <img
+            src="./src/assets/logo-footer.svg"
+            alt="Логотип CurrConverter"
+            class="footer__logo-img"
+          />
+        </div>
+        <p class="footer__copy">&copy; 2024</p>
+      </footer>
+    </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
 </html>
