@@ -23,7 +23,7 @@
       "name": "Евро",
       "short_name": "EUR",
       "symbol": "&#8364;",
-      "flag": "https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg",
+      "flag": "https://yastatic.net/s3/frontend/country-flag/_/41CsfCf8.svg",
       "exchange_rate": 106.30,
       "er_dynamics": 1.2044
     },
@@ -32,7 +32,7 @@
       "name": "Фунт стерлингов Соединённого Королевства",
       "short_name": "GBP",
       "symbol": "&#163;",
-      "flag": "https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg",
+      "flag": "https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg",
       "exchange_rate": 126.83,
       "er_dynamics": 0.1973
     },
@@ -41,7 +41,7 @@
       "name": "Швейцарский франк",
       "short_name": "CHF",
       "symbol": "&#8355;",
-      "flag": "https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg",
+      "flag": "https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg",
       "exchange_rate": 113.13,
       "er_dynamics": 0.1973
     },
@@ -50,7 +50,7 @@
       "name": "Японская иена",
       "short_name": "JPY",
       "symbol": "&#165;",
-      "flag": "https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg",
+      "flag": "https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg",
       "exchange_rate": 0.68,
       "er_dynamics": -0.0004
     },
@@ -59,7 +59,7 @@
       "name": "Турецкая лира",
       "short_name": "TRY",
       "symbol": "&#8378;",
-      "flag": "https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg",
+      "flag": "https://yastatic.net/s3/frontend/country-flag/_/2pBuBF34.svg",
       "exchange_rate": 107.78,
       "er_dynamics": -8.5
     },
