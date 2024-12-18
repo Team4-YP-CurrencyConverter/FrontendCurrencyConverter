@@ -29,13 +29,14 @@ export function resetError(errorElement: HTMLSpanElement) {
 export function CheckIsValid(
   schema: z.ZodString,
   data: string,
-  errorElement: HTMLSpanElement
+  errorElement: HTMLSpanElement,
 ) {
   const validationResult = schema.safeParse(data);
   if (validationResult.success) {
     resetError(errorElement);
     // Здесь запрос
   } else {
+    // eslint-disable-next-line no-underscore-dangle
     const message = validationResult.error.format()._errors[0];
     setError(message, errorElement);
   }

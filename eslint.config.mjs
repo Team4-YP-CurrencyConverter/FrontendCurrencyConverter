@@ -23,6 +23,11 @@ export default tseslint.config(
     },
   },
   {
+    rules: {
+      "no-param-reassign": [2, { "props": false }]
+    }
+  },
+  {
     ignores: ['eslint.config.mjs', 'node_modules', 'src/vite-env.d.ts'],
   }
 );
