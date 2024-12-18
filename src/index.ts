@@ -1,5 +1,5 @@
 import './index.css';
-import getTechnicalInfo from './utils/api/technical.ts';
+import getCurrencies from './utils/api/currenciesApi.ts';
 
-const data = await getTechnicalInfo();
-console.log(data[0].response);
+const data = await getCurrencies();
+console.log(data);
