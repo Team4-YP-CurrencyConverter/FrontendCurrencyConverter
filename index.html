@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./src/index.scss" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CurrencyConverter</title>
   </head>
@@ -62,12 +63,112 @@
                       class="select__arrow"
                     />
                   </button>
+                  <div class="popup">
+                    <div class="popup__search">
+                      <input
+                        type="text"
+                        class="popup__input"
+                        placeholder="Поиск валюты"
+                      />
+                      <img
+                        class="popup__search-img"
+                        src="./src/assets/input-search.svg"
+                        alt="лупа"
+                      />
+                      <!-- заменить значение src с помощью JS на input-close.svg -->
+                    </div>
+
+                    <div class="currencycard__container">
+                      <div class="currencycard__wrapper">
+                        <p class="popup__text">Недавние</p>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <img
                   src="./src/assets/input-toogle.svg"
                   alt="кнопка закрытия"
-                  class="converter__input-toogle"
-                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+                  class="converter__input-toogle converter__input-toogle-hidden"
+                />
+                <!--для скрытия добавить converter__input-toogle-hidden-->
               </div>
               <div class="converter__wrapper-input-toogle">
                 <div class="converter__input">
@@ -93,14 +194,116 @@
                       class="select__arrow"
                     />
                   </button>
+                  <div class="popup popup__hidden">
+                    <div class="popup__search">
+                      <input
+                        type="text"
+                        class="popup__input"
+                        placeholder="Поиск валюты"
+                      />
+                      <img
+                        class="popup__search-img"
+                        src="./src/assets/input-search.svg"
+                        alt="лупа"
+                      />
+                      <!-- заменить значение src с помощью JS на input-close.svg -->
+                    </div>
+
+                    <div class="currencycard__container">
+                      <div class="currencycard__wrapper">
+                        <p class="popup__text">Недавние</p>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <img
                   src="./src/assets/input-toogle.svg"
                   alt="кнопка закрытия"
-                  class="converter__input-toogle"
-                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+                  class="converter__input-toogle converter__input-toogle-hidden"
+                />
+                <!--для скрытия добавить converter__input-toogle-hidden-->
               </div>
-              <div class="converter__wrapper-input-toogle converter__input_hidden">
+              <div
+                class="converter__wrapper-input-toogle converter__input_hidden"
+              >
                 <div class="converter__input converter__input_hidden">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">$</span>
@@ -124,14 +327,116 @@
                       class="select__arrow"
                     />
                   </button>
+                  <div class="popup popup__hidden">
+                    <div class="popup__search">
+                      <input
+                        type="text"
+                        class="popup__input"
+                        placeholder="Поиск валюты"
+                      />
+                      <img
+                        class="popup__search-img"
+                        src="./src/assets/input-search.svg"
+                        alt="лупа"
+                      />
+                      <!-- заменить значение src с помощью JS на input-close.svg -->
+                    </div>
+
+                    <div class="currencycard__container">
+                      <div class="currencycard__wrapper">
+                        <p class="popup__text">Недавние</p>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <img
                   src="./src/assets/input-toogle.svg"
                   alt="кнопка закрытия"
                   class="converter__input-toogle"
-                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+                />
+                <!--для скрытия добавить converter__input-toogle-hidden-->
               </div>
-              <div class="converter__wrapper-input-toogle converter__input_hidden">
+              <div
+                class="converter__wrapper-input-toogle converter__input_hidden"
+              >
                 <div class="converter__input">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">$</span>
@@ -155,12 +460,112 @@
                       class="select__arrow"
                     />
                   </button>
+                  <div class="popup popup__hidden">
+                    <div class="popup__search">
+                      <input
+                        type="text"
+                        class="popup__input"
+                        placeholder="Поиск валюты"
+                      />
+                      <img
+                        class="popup__search-img"
+                        src="./src/assets/input-search.svg"
+                        alt="лупа"
+                      />
+                      <!-- заменить значение src с помощью JS на input-close.svg -->
+                    </div>
+
+                    <div class="currencycard__container">
+                      <div class="currencycard__wrapper">
+                        <p class="popup__text">Недавние</p>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">Rub</span>
+                            <span class="currencycard__description"
+                              >Российский рубль</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">usd</span>
+                            <span class="currencycard__description"
+                              >Доллар США</span
+                            >
+                          </div>
+                        </div>
+                        <div id="currencycard">
+                          <div class="currencycard">
+                            <img
+                              class="currencycard__flag"
+                              src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                              alt="флаг государства"
+                            />
+                            <span class="currencycard__name">cny</span>
+                            <span class="currencycard__description"
+                              >Китайский юань</span
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <img
                   src="./src/assets/input-toogle.svg"
                   alt="кнопка закрытия"
                   class="converter__input-toogle"
-                /> <!--для скрытия добавить converter__input-toogle-hidden-->
+                />
+                <!--для скрытия добавить converter__input-toogle-hidden-->
               </div>
             </div>
             <button class="button">
