@@ -3,7 +3,6 @@
     grid-template-columns: 36px 167px;
     gap: 4px;
     cursor: pointer;
-    background-color: $light-mono-color;
     padding: 12px 0;
     &__container {
         margin-top: 4px;
@@ -17,10 +16,16 @@
         background:  rgba(0,0,0,0.0);
         border-radius: 12px;
     }
-    &__wrapper {
+    &__wrapper-background {
+        position: absolute;
+        width: 80%;
+        height: 335px;
         border-radius: 12px;
         background-color: $light-mono-color;
+    }
+    &__wrapper {
         padding: 20px 0 12px 16px;
+        z-index: 2;
     }
     &__container::-webkit-scrollbar {
         width: 16px;
