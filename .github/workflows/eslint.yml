@@ -22,7 +22,7 @@ jobs:
       - name: Use Node.js v24.x
         uses: actions/setup-node@v4
         with: 
-          node-version: 24
+          node-version: 22
 
       - name: Installing dependencies
         run: npm ci
