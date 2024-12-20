@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./src/index.scss" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CurrencyConverter</title>
   </head>
@@ -62,7 +63,7 @@
                       class="select__arrow"
                     />
                   </button>
-                  <div class="popup">
+                  <div class="popup popup__hidden">
                     <div class="popup__search">
                       <input
                         type="text"
@@ -210,6 +211,7 @@
                     </div>
 
                     <div class="currencycard__container">
+                      <div class="currencycard__wrapper-background"></div>
                       <div class="currencycard__wrapper">
                         <p class="popup__text">Недавние</p>
                         <div id="currencycard">
@@ -343,6 +345,7 @@
                     </div>
 
                     <div class="currencycard__container">
+                      <div class="currencycard__wrapper-background"></div>
                       <div class="currencycard__wrapper">
                         <p class="popup__text">Недавние</p>
                         <div id="currencycard">
@@ -476,6 +479,7 @@
                     </div>
 
                     <div class="currencycard__container">
+                      <div class="currencycard__wrapper-background"></div>
                       <div class="currencycard__wrapper">
                         <p class="popup__text">Недавние</p>
                         <div id="currencycard">
@@ -586,6 +590,7 @@
         </div>
         <p class="footer__copy">&copy; 2024</p>
       </footer>
+      <div class="popup__overlay popup__overlay-hidden"></div>
     </div>
     <script type="module" src="/src/index.ts"></script>
   </body>
