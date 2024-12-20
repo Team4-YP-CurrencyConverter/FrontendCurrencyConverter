@@ -5,6 +5,8 @@ const handleSelectButton = () => {
     selectButton.addEventListener('click', () => {
       const img = selectButton.querySelector('.select__arrow');
       img?.classList.toggle('select__arrow-rotated');
+      const overlay = document.querySelector('.popup__overlay');
+      overlay?.classList.toggle('popup__overlay-hidden');
       const popup = selectButton.closest('.converter__input')?.querySelector('.popup');
       popup?.classList.toggle('popup__hidden');
       const popups = document.querySelectorAll('.popup');
@@ -21,14 +23,16 @@ const handleSelectButton = () => {
             });
           }
         });
-        if (!item.classList.contains('.popup__hidden')) {
-          document.addEventListener('click', (e) => {
-            console.log(e.target);
-            /* if (e.target !== item && !item.contains(e.target)) {
-              item.classList.add('popup__hidden');
-            } */
-          });
-        }
+        document.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            item.classList.add('popup__hidden');
+            const images = document.querySelectorAll('.select__arrow');
+            images.forEach((image) => {
+              image.classList.remove('select__arrow-rotated');
+            });
+            overlay?.classList.add('popup__overlay-hidden');
+          }
+        });
       });
       const images = document.querySelectorAll('.select__arrow');
       images.forEach((item) => {
