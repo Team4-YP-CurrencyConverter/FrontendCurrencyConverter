@@ -565,7 +565,7 @@ input[type=number]::placeholder {
 .button__hidden {
   display: none;
 }
-.button__vissible {
+.button__visible {
   display: flex;
 }
 
