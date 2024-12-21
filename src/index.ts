@@ -13,7 +13,6 @@ console.log(data);
 handleSelectButton();
 handleAddButton();
 handleToggleButton();
-handleSearchCurrency();
 
 fakedata.forEach((item) => {
   currencyCardRenderer(item, cardContainers[0]);
@@ -27,3 +26,5 @@ fakedata.forEach((item) => {
 fakedata.forEach((item) => {
   currencyCardRenderer(item, cardContainers[3]);
 });
+
+handleSearchCurrency();
