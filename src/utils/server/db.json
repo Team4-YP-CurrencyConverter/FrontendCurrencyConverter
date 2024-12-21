@@ -15,7 +15,7 @@
       "short_name": "USD",
       "symbol": "&#36;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg",
-      "exchange_rate": 99.42,
+      "exchange_rate": 102.34,
       "er_dynamics": 0.0456
     },
     {
@@ -24,7 +24,7 @@
       "short_name": "EUR",
       "symbol": "&#8364;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/41CsfCf8.svg",
-      "exchange_rate": 106.30,
+      "exchange_rate": 106.54,
       "er_dynamics": 1.2044
     },
     {
@@ -33,7 +33,7 @@
       "short_name": "GBP",
       "symbol": "&#163;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg",
-      "exchange_rate": 126.83,
+      "exchange_rate": 128.45,
       "er_dynamics": 0.1973
     },
     {
@@ -42,7 +42,7 @@
       "short_name": "CHF",
       "symbol": "&#8355;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg",
-      "exchange_rate": 113.13,
+      "exchange_rate": 114.32,
       "er_dynamics": 0.1973
     },
     {
@@ -51,7 +51,7 @@
       "short_name": "JPY",
       "symbol": "&#165;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg",
-      "exchange_rate": 0.68,
+      "exchange_rate": 0.65,
       "er_dynamics": -0.0004
     },
     {
@@ -60,7 +60,7 @@
       "short_name": "TRY",
       "symbol": "&#8378;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/2pBuBF34.svg",
-      "exchange_rate": 107.78,
+      "exchange_rate": 2.92,
       "er_dynamics": -8.5
     },
     {
@@ -69,8 +69,82 @@
       "short_name": "CNY",
       "symbol": "&#165;",
       "flag": "https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg",
-      "exchange_rate": 14.36,
+      "exchange_rate": 13.99,
       "er_dynamics": -1
     }
-  ]
+  ],
+  "conversion_rate": {
+    "RUB": {
+      "USD": 102.34,
+      "EUR": 106.54,
+      "GBP": 128.45,
+      "CHF": 114.32,
+      "JPY": 0.65,
+      "TRY": 2.92,
+      "CNY": 13.99
+    },
+    "USD": {
+      "RUB": 0.00977135,
+      "EUR": 1.041039672,
+      "GBP": 0.796730245,
+      "CHF": 0.895206438,
+      "JPY": 157.446153846,
+      "TRY": 35.047945205,
+      "CNY": 7.315225161
+    },
+    "EUR": {
+      "RUB": 0.009386146,
+      "USD": 0.960578187,
+      "GBP": 1.20565046,
+      "CHF": 1.073024216,
+      "JPY": 0.006100995,
+      "TRY": 0.027407546,
+      "CNY": 0.131312183
+    },
+    "GBP": {
+      "RUB": 0.00778513,
+      "USD": 0.796730245,
+      "EUR": 0.829427793,
+      "CHF": 0.889996107,
+      "JPY": 0.005060335,
+      "TRY": 0.022732581,
+      "CNY": 0.108913974
+    },
+    "CHF": {
+      "RUB": 0.008747376,
+      "USD": 0.895206438,
+      "EUR": 0.931945416,
+      "GBP": 1.12360042,
+      "JPY": 0.005685794,
+      "TRY": 0.025542337,
+      "CNY": 0.122375787
+    },
+    "JPY": {
+      "RUB": 1.538461538,
+      "USD": 157.446153846,
+      "EUR": 163.907692308,
+      "GBP": 197.615384615,
+      "CHF": 175.876923077,
+      "TRY": 4.492307692,
+      "CNY": 21.523076923
+    },
+    "TRY": {
+      "RUB": 0.342465753,
+      "USD": 35.047945205,
+      "EUR": 36.48630137,
+      "GBP": 43.989726027,
+      "CHF": 39.150684932,
+      "JPY": 0.22260274,
+      "CNY": 4.79109589
+    },
+    "CNY": {
+      "RUB": 0.071479628,
+      "USD": 7.315225161,
+      "EUR": 7.6154396,
+      "GBP": 9.181558256,
+      "CHF": 8.171551108,
+      "JPY": 0.046461758,
+      "TRY": 0.208720515
+    }
+  }
 }
