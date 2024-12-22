@@ -6,6 +6,7 @@ import handleSearchCurrency from './utils/handlers/searchcurrency.ts';
 import handleSelectButton from './utils/handlers/selectbutton.ts';
 import fakedata from './data/fake.ts';
 import currencyCardRenderer, { cardContainers } from './utils/api/currencycardrenderer.ts';
+import handleCurrencyButton from './utils/handlers/currencybutton.ts';
 
 const data = await getCurrencies();
 // eslint-disable-next-line no-console
@@ -28,3 +29,5 @@ fakedata.forEach((item) => {
 });
 
 handleSearchCurrency();
+
+handleCurrencyButton(fakedata);

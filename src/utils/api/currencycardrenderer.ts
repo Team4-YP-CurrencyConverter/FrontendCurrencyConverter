@@ -4,6 +4,7 @@ type Data = {
     link: string;
     name: string;
     description: string;
+    symbol: string;
 }
 export const cardContainers = document.querySelectorAll('.currencycard__wrapper');
 

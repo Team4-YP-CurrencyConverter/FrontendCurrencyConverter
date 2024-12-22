@@ -4,6 +4,7 @@ const fakedata = [
     name: 'rub',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg',
     description: 'Российский рубль',
+    symbol: '&#8381;',
 
   },
   {
@@ -11,6 +12,7 @@ const fakedata = [
     name: 'usd',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg',
     description: 'Доллар США',
+    symbol: '&#36;',
 
   },
   {
@@ -18,6 +20,7 @@ const fakedata = [
     name: 'cny',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg',
     description: 'Китайский юань',
+    symbol: '&#8364;',
 
   },
   {
@@ -25,6 +28,7 @@ const fakedata = [
     name: 'gbp',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg',
     description: 'Фунт стерлингов Соединённого Королевства',
+    symbol: '&#163;',
 
   },
   {
@@ -32,6 +36,7 @@ const fakedata = [
     name: 'chf',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg',
     description: 'Швейцарский франк',
+    symbol: '&#8355;',
 
   },
   {
@@ -39,6 +44,7 @@ const fakedata = [
     name: 'jpy',
     link: 'https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg',
     description: 'Японская иена',
+    symbol: '&#165;',
 
   },
 ];
