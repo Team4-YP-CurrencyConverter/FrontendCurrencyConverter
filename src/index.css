@@ -534,6 +534,7 @@ input[type=number]::placeholder {
   line-height: 48px;
   letter-spacing: 0.1000000015px;
   color: #202224;
+  text-transform: uppercase;
 }
 .select__arrow {
   width: 24px;
