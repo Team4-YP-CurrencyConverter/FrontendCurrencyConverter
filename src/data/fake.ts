@@ -1,4 +1,4 @@
-/* const data = [
+const fakedata = [
   {
     id: 1,
     name: 'rub',
@@ -20,13 +20,27 @@
     description: 'Китайский юань',
 
   },
-]; */
-const data = {
-  id: 1,
-  name: 'rub',
-  link: 'https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg',
-  description: 'Российский рубль',
+  {
+    id: 4,
+    name: 'gbp',
+    link: 'https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg',
+    description: 'Фунт стерлингов Соединённого Королевства',
 
-};
+  },
+  {
+    id: 5,
+    name: 'chf',
+    link: 'https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg',
+    description: 'Швейцарский франк',
 
-export default data;
+  },
+  {
+    id: 6,
+    name: 'jpy',
+    link: 'https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg',
+    description: 'Японская иена',
+
+  },
+];
+
+export default fakedata;

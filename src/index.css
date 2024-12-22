@@ -655,7 +655,6 @@ input[type=number]::placeholder {
 }
 
 .currencycard {
-  display: grid;
   grid-template-columns: 36px 167px;
   gap: 4px;
   cursor: pointer;
@@ -715,6 +714,12 @@ input[type=number]::placeholder {
   line-height: 16.8px;
   color: gray;
   grid-column: 1/3;
+}
+.currencycard__hidden {
+  display: none;
+}
+.currencycard__visible {
+  display: grid;
 }
 
 body {
