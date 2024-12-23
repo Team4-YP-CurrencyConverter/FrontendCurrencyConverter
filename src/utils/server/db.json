@@ -146,5 +146,15 @@
       "JPY": 0.046461758,
       "TRY": 0.208720515
     }
-  }
+  },
+  "processed_currencies": [
+    "RUB",
+    "USD",
+    "EUR",
+    "GBP",
+    "CHF",
+    "JPY",
+    "TRY",
+    "CNY"
+  ]
 }

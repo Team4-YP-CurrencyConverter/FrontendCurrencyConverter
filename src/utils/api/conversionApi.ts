@@ -8,7 +8,8 @@ async function getConversionAmount(amount: number, currencies: string) {
   try {
     return await api<IConversionAmountResponse>({
       method: 'GET',
-      endPath: `/conversion?amount=${amount}&currencies=${currencies}`,
+      // fix: I don`t now why /conversion?amount=${amount}, return Nan
+      endPath: `/conversion?&amount=${amount}&currencies=${currencies}`,
     });
   } catch (error) {
     return error;
