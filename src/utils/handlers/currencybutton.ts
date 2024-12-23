@@ -23,8 +23,12 @@ const handleCurrencyButton = (data: Data[]) => {
             popup?.classList.remove('popup__visible');
             (<HTMLImageElement>selectButton!.querySelector('.select__arrow')!).classList.remove('select__arrow-rotated');
             const selectedCurrency = data.filter((curr) => curr.name === cardButton!.querySelector('.currencycard__name')!.textContent);
+            (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__currency-icon')!.remove();
             const { symbol } = selectedCurrency[0];
-            (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__currency-icon')!.textContent = `${symbol}`;
+            const span = document.createElement('span');
+            span.className = 'converter__currency-icon';
+            span.innerHTML = symbol;
+            (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__data-container')!.prepend(span);
     });
   });
 };
