@@ -2,9 +2,9 @@
 /* eslint-disable no-undef */
 type Data = {
     id: number;
-    link: string;
+    flag: string;
+    short_name: string;
     name: string;
-    description: string;
     symbol: string;
 }
 
@@ -22,7 +22,7 @@ const handleCurrencyButton = (data: Data[]) => {
             popup?.classList.add('popup__hidden');
             popup?.classList.remove('popup__visible');
             (<HTMLImageElement>selectButton!.querySelector('.select__arrow')!).classList.remove('select__arrow-rotated');
-            const selectedCurrency = data.filter((curr) => curr.name === cardButton!.querySelector('.currencycard__name')!.textContent);
+            const selectedCurrency = data.filter((curr) => curr.short_name === cardButton!.querySelector('.currencycard__name')!.textContent);
             (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__currency-icon')!.remove();
             const { symbol } = selectedCurrency[0];
             const span = document.createElement('span');

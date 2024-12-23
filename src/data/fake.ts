@@ -1,49 +1,49 @@
 const fakedata = [
   {
     id: 1,
-    name: 'rub',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg',
-    description: 'Российский рубль',
+    short_name: 'rub',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg',
+    name: 'Российский рубль',
     symbol: '&#8381;',
 
   },
   {
     id: 2,
-    name: 'usd',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg',
-    description: 'Доллар США',
+    short_name: 'usd',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg',
+    name: 'Доллар США',
     symbol: '&#36;',
 
   },
   {
     id: 3,
-    name: 'cny',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg',
-    description: 'Китайский юань',
+    short_name: 'cny',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg',
+    name: 'Китайский юань',
     symbol: '&#8364;',
 
   },
   {
     id: 4,
-    name: 'gbp',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg',
-    description: 'Фунт стерлингов Соединённого Королевства',
+    short_name: 'gbp',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg',
+    name: 'Фунт стерлингов Соединённого Королевства',
     symbol: '&#163;',
 
   },
   {
     id: 5,
-    name: 'chf',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg',
-    description: 'Швейцарский франк',
+    short_name: 'chf',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/oF3xRQnK.svg',
+    name: 'Швейцарский франк',
     symbol: '&#8355;',
 
   },
   {
     id: 6,
-    name: 'jpy',
-    link: 'https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg',
-    description: 'Японская иена',
+    short_name: 'jpy',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg',
+    name: 'Японская иена',
     symbol: '&#165;',
 
   },

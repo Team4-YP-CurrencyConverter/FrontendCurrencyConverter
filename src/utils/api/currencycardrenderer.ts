@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 type Data = {
     id: number;
-    link: string;
+    flag: string;
+    short_name: string;
     name: string;
-    description: string;
     symbol: string;
 }
 export const cardContainers = document.querySelectorAll('.currencycard__wrapper');
@@ -12,9 +12,9 @@ const currencyCardRenderer = (data: Data, item: Element) => {
   const element = document.querySelector('#currencycard') as HTMLTemplateElement;
   const cardTemplate = element.content;
   const cardElement = cardTemplate?.querySelector('.currencycard')!.cloneNode(true);
-  (<HTMLImageElement>(cardElement as HTMLElement).querySelector('.currencycard__flag')).src = data.link;
-  (cardElement as HTMLElement).querySelector('.currencycard__name')!.textContent = data.name;
-  (cardElement as HTMLElement).querySelector('.currencycard__description')!.textContent = data.description;
+  (<HTMLImageElement>(cardElement as HTMLElement).querySelector('.currencycard__flag')).src = data.flag;
+  (cardElement as HTMLElement).querySelector('.currencycard__name')!.textContent = data.short_name;
+  (cardElement as HTMLElement).querySelector('.currencycard__description')!.textContent = data.name;
   item?.append(cardElement);
 };
 
