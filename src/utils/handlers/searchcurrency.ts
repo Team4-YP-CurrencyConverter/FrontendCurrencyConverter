@@ -10,10 +10,10 @@ const handleSearchCurrency = () => {
         (<HTMLImageElement>image).src = './src/assets/input-search.svg';
       }
       const currenciesTags = input?.closest('.popup')?.querySelectorAll('.currencycard__name');
-      const currencies: (string | null)[] = [];
       currenciesTags?.forEach((item) => {
-        currencies.push(item.textContent);
-        if (!item.textContent?.includes((<HTMLInputElement>input).value)) {
+        if (!item.textContent?.toLowerCase().includes(
+          (<HTMLInputElement>input).value.toLowerCase(),
+        )) {
           item.closest('.currencycard')?.classList.add('currencycard__hidden');
           item.closest('.currencycard')?.classList.remove('currencycard__visible');
         } else {
