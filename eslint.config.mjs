@@ -14,7 +14,12 @@ const compat = new FlatCompat({
 export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommendedTypeChecked,
-  ...compat.extends('airbnb-base'),
+  ...compat.extends(
+    'airbnb-base',
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    'plugin:import/typescript',
+  ),
   {
     languageOptions: {
       parserOptions: {
@@ -23,8 +28,18 @@ export default tseslint.config(
     },
   },
   {
+    settings: {
+      "import/resolver": {
+        node: {
+          extensions: [".ts"],
+        },
+      },
+    },
+  },
+  {
     rules: {
-      "no-param-reassign": [2, { "props": false }]
+      'no-param-reassign': [2, { 'props': false }],
+      'import/no-unresolved': "off",
     }
   },
   {
