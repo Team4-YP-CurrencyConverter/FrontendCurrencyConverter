@@ -15,7 +15,7 @@ server.get('/conversion', (req, res) => {
   const params = new URLSearchParams(req.url);
   const [amount, currencies] = [Number(params.get('amount')), params.get('currencies')];
   // todo: make a more elegant check for null
-  if (amount) {
+  if (!amount) {
     res.jsonp([0, 0, 0]);
   }
   // Parsing currencies
