@@ -1,18 +1,16 @@
 import api from './api.ts';
 
-interface IConversionAmountResponse {
-  amounts: number[],
-}
-
-async function getConversionAmount(amount: number, currencies: string) {
+async function getConversionAmount(amount: number, currencies: string): Promise<number[]> {
   try {
-    return await api<IConversionAmountResponse>({
+    return await api<number[]>({
       method: 'GET',
       // fix: I don`t now why /conversion?amount=${amount}, return Nan
       endPath: `/conversion?&amount=${amount}&currencies=${currencies}`,
     });
   } catch (error) {
-    return error;
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return [];
   }
 }
 
