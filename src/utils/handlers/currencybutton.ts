@@ -18,6 +18,10 @@ const handleCurrencyButton = (data: Data[]) => {
       // eslint-disable-next-line no-void
       void (async () => {
         const selectButton = (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.select');
+        const rememberedText = selectButton!.querySelector('.select__text')!.textContent;
+        const rememberedFlag = (<HTMLImageElement>selectButton!.querySelector('.select__flag')!).src;
+        const rememberedIcon = (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__currency-icon')!.textContent;
+        /* ↑↑ запоминаем значения в кнопке до изменения ↑↑ */
         const cardButton = (<HTMLElement>e.target!).closest('.currencycard');
 
         // Initialization of variables of the new and old short name selected currency
@@ -51,6 +55,16 @@ const handleCurrencyButton = (data: Data[]) => {
         // update amounts and symbol of selected currency
         selectedCurrencyInput.value = newAmounts.toString();
         selectedCurrencyObject!.prepend(span);
+
+        /* проверка на повтор валюты */
+        const selectBtnsToCheckDuplicates = Array.from(document.querySelectorAll('.select')).filter(((btn) => btn !== selectButton));
+        selectBtnsToCheckDuplicates.forEach((btnToCheck) => {
+          if (btnToCheck.querySelector('.select__text')?.textContent?.toUpperCase() === selectButton!.querySelector('.select__text')!.textContent!.toUpperCase()) {
+            btnToCheck.querySelector('.select__text')!.textContent = rememberedText;
+            (<HTMLImageElement>btnToCheck!.querySelector('.select__flag')!).src = rememberedFlag;
+            btnToCheck!.closest('.converter__input')!.querySelector('.converter__currency-icon')!.textContent = rememberedIcon;
+          }
+        });
       })();
     });
   });

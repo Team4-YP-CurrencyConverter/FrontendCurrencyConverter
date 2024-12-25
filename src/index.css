@@ -345,8 +345,8 @@ template {
   font-display: swap;
 }
 .header {
-  max-width: 1120px;
-  padding: 0 160px;
+  width: 1120px;
+  margin: 0 auto;
   min-height: 135px;
   display: flex;
   align-items: center;
@@ -370,19 +370,23 @@ template {
 }
 
 .footer {
-  max-width: 1120px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 160px;
   min-height: 175px;
   background-color: #4379ee;
+  display: flex;
+  align-items: center;
 }
 .footer__copy {
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
   color: #f4f5f9;
+}
+.footer__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 1120px;
+  margin: 0 auto;
 }
 
 .curconverter {
@@ -689,6 +693,8 @@ input[type=number]::placeholder {
   overflow-x: hidden;
   background: rgba(0, 0, 0, 0);
   border-radius: 12px;
+  width: 248px;
+  box-sizing: border-box;
 }
 .currencycard__wrapper-background {
   position: absolute;
