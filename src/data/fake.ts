@@ -20,7 +20,7 @@ const fakedata = [
     short_name: 'cny',
     flag: 'https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg',
     name: 'Китайский юань',
-    symbol: '&#8364;',
+    symbol: '&#165;',
 
   },
   {
@@ -41,10 +41,10 @@ const fakedata = [
   },
   {
     id: 6,
-    short_name: 'jpy',
-    flag: 'https://yastatic.net/s3/frontend/country-flag/_/3Tcoj4gj.svg',
-    name: 'Японская иена',
-    symbol: '&#165;',
+    short_name: 'try',
+    flag: 'https://yastatic.net/s3/frontend/country-flag/_/2pBuBF34.svg',
+    name: 'Турецкая лира',
+    symbol: '&#8378;',
 
   },
 ];
