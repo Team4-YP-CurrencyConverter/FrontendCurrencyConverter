@@ -7,6 +7,10 @@ const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 server.use(middlewares);
 
+server.use((req, res, next) => {
+  setTimeout(next, 1000);
+});
+
 server.get('/conversion', (req, res) => {
   const responseBody: number[] = [];
   let [firstCurrency, secondCurrency, thirdCurrency, fourthCurrency] = ['', '', '', ''];
@@ -14,8 +18,12 @@ server.get('/conversion', (req, res) => {
   // Get url parameters
   const params = new URLSearchParams(req.url);
   const [amount, currencies] = [Number(params.get('amount')), params.get('currencies')];
+  // todo: make a more elegant check for null
+  if (!amount) {
+    res.jsonp([0, 0, 0]);
+  }
   // Parsing currencies
-  if (amount && currencies) {
+  if (currencies) {
     [firstCurrency, secondCurrency, thirdCurrency, fourthCurrency] = [
       currencies.substring(0, 3),
       currencies.substring(3, 6),
@@ -34,7 +42,9 @@ server.get('/conversion', (req, res) => {
   // Get amount of first currency
   if (secondCurrency in conversionRate) {
     responseBody.push(
-      Number(amount) / conversionRate[secondCurrency as keyof typeof conversionRate],
+      Number(
+        (Number(amount) / conversionRate[secondCurrency as keyof typeof conversionRate]).toFixed(4),
+      ),
     );
   } else {
     res.statusCode = 500;
@@ -42,13 +52,17 @@ server.get('/conversion', (req, res) => {
   // Get amount of second currency, if it exists
   if (thirdCurrency in conversionRate) {
     responseBody.push(
-      Number(amount) / conversionRate[thirdCurrency as keyof typeof conversionRate],
+      Number(
+        (Number(amount) / conversionRate[thirdCurrency as keyof typeof conversionRate]).toFixed(4),
+      ),
     );
   }
   // Get amount of third currency, if it exists
   if (fourthCurrency in conversionRate) {
     responseBody.push(
-      Number(amount) / conversionRate[fourthCurrency as keyof typeof conversionRate],
+      Number(
+        (Number(amount) / conversionRate[fourthCurrency as keyof typeof conversionRate]).toFixed(4),
+      ),
     );
   }
   res.jsonp(responseBody);

@@ -1,7 +1,7 @@
 import api from './api.ts';
 
 interface ICurrenciesResponse {
-  id: string,
+  id: number,
   name: string,
   short_name: string,
   symbol: string,
@@ -10,14 +10,16 @@ interface ICurrenciesResponse {
   er_dynamics: number
 }
 
-async function getCurrencies() {
+async function getCurrencies(): Promise<ICurrenciesResponse[]> {
   try {
     return await api<ICurrenciesResponse[]>({
       method: 'GET',
       endPath: '/currencies',
     });
   } catch (error) {
-    return error;
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return [];
   }
 }
 

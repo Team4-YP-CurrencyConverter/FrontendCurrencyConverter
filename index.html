@@ -38,7 +38,7 @@
           </div>
           <div class="converter">
             <div class="converter__inputs">
-              <div class="converter__wrapper-input-toogle">
+              <div class="converter__wrapper-input-toogle" id="firstСonvertibleCurrency">
                 <div class="converter__input">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">&#8381;</span>
@@ -91,8 +91,14 @@
                   class="converter__input-toogle converter__input-toogle-hidden"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error"></span>
+                <img 
+                  src="./src/assets/loading.svg"
+                  alt="Загрузка"
+                  class="converter__loading"
+                />
               </div>
-              <div class="converter__wrapper-input-toogle">
+              <div class="converter__wrapper-input-toogle" id="secondConvertibleCurrency">
                 <div class="converter__input">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">&#36;</span>
@@ -145,9 +151,15 @@
                   class="converter__input-toogle converter__input-toogle-hidden"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error"></span>
+                <img 
+                  src="./src/assets/loading.svg"
+                  alt="Загрузка"
+                  class="converter__loading"
+                />
               </div>
               <div
-                class="converter__wrapper-input-toogle converter__input_hidden"
+                class="converter__wrapper-input-toogle converter__input_hidden" id="thirdConvertibleCurrency"
               >
                 <div class="converter__input">
                   <div class="converter__data-container">
@@ -201,13 +213,19 @@
                   class="converter__input-toogle"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error"></span>
+                <img 
+                  src="./src/assets/loading.svg"
+                  alt="Загрузка"
+                  class="converter__loading"
+                />
               </div>
               <div
-                class="converter__wrapper-input-toogle converter__input_hidden"
+                class="converter__wrapper-input-toogle converter__input_hidden" id="fourthСonvertibleCurrency"
               >
                 <div class="converter__input">
                   <div class="converter__data-container">
-                    <span class="converter__currency-icon">&#165;</span>
+                    <span class="converter__currency-icon">&#163;</span>
                     <div class="converter__textinput-container">
                       <input
                         class="converter__textinput"
@@ -218,11 +236,11 @@
                   </div>
                   <button class="select">
                     <img
-                      src="https://yastatic.net/s3/frontend/country-flag/_/46A49jA1.svg"
+                      src="https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg"
                       alt="флаг государства"
                       class="select__flag"
                     />
-                    <span class="select__text">CNY</span>
+                    <span class="select__text">GBP</span>
                     <img
                       src="./src/assets/select-arrow.svg"
                       class="select__arrow"
@@ -257,6 +275,12 @@
                   class="converter__input-toogle"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error"></span>
+                <img 
+                  src="./src/assets/loading.svg"
+                  alt="Загрузка"
+                  class="converter__loading"
+                />
               </div>
             </div>
             <button class="button button__visible">
