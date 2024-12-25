@@ -5,7 +5,7 @@
     &__inputs {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 5px;
     }
     &__input {
         display: flex;
@@ -20,15 +20,17 @@
     &__input-toogle {
         width: 18px;
         height: 18px;
+        visibility: visible;
         cursor: pointer;
     }
     &__wrapper-input-toogle {
-        display: flex;
-        gap: 21px;
+        display: grid;
+        grid: auto 14px/repeat(2, auto);
+        gap: 5px 21px;
         align-items: center;
     }
     &__input-toogle-hidden {
-        display: none;
+        visibility: hidden;
     }
     &__input_hidden {
         display: none;

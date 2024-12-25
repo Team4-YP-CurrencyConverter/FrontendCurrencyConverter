@@ -419,7 +419,7 @@ template {
 .converter__inputs {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 5px;
 }
 .converter__input {
   display: flex;
@@ -434,15 +434,17 @@ template {
 .converter__input-toogle {
   width: 18px;
   height: 18px;
+  visibility: visible;
   cursor: pointer;
 }
 .converter__wrapper-input-toogle {
-  display: flex;
-  gap: 21px;
+  display: grid;
+  grid: auto 14px/repeat(2, auto);
+  gap: 5px 21px;
   align-items: center;
 }
 .converter__input-toogle-hidden {
-  display: none;
+  visibility: hidden;
 }
 .converter__input_hidden {
   display: none;

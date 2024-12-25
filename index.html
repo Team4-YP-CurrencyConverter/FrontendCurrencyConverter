@@ -38,7 +38,7 @@
           </div>
           <div class="converter">
             <div class="converter__inputs">
-              <div class="converter__wrapper-input-toogle">
+              <div class="converter__wrapper-input-toogle" id="firstСonvertibleCurrency">
                 <div class="converter__input">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">&#8381;</span>
@@ -91,8 +91,9 @@
                   class="converter__input-toogle converter__input-toogle-hidden"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error" id="firstCurrencyError"></span>
               </div>
-              <div class="converter__wrapper-input-toogle">
+              <div class="converter__wrapper-input-toogle" id="secondConvertibleCurrency">
                 <div class="converter__input">
                   <div class="converter__data-container">
                     <span class="converter__currency-icon">&#8381;</span>
@@ -145,9 +146,10 @@
                   class="converter__input-toogle converter__input-toogle-hidden"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error" id="secondCurrencyError"></span>
               </div>
               <div
-                class="converter__wrapper-input-toogle converter__input_hidden"
+                class="converter__wrapper-input-toogle converter__input_hidden" id="thirdConvertibleCurrency"
               >
                 <div class="converter__input">
                   <div class="converter__data-container">
@@ -201,9 +203,10 @@
                   class="converter__input-toogle"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error" id="thirdCurrencyError"></span>
               </div>
               <div
-                class="converter__wrapper-input-toogle converter__input_hidden"
+                class="converter__wrapper-input-toogle converter__input_hidden" id="fourthСonvertibleCurrency"
               >
                 <div class="converter__input">
                   <div class="converter__data-container">
@@ -257,6 +260,7 @@
                   class="converter__input-toogle"
                 />
                 <!--для скрытия добавить converter__input-toogle-hidden-->
+                <span class="error" id="fourthCurrencyError"></span>
               </div>
             </div>
             <button class="button button__visible">
