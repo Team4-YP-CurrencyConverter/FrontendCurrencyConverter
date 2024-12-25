@@ -33,17 +33,19 @@ const handleAddButton = () => {
         addButton.classList.remove('button__hidden');
       }
 
-      const selectedCurrencyName = input?.querySelector('.select__text')?.innerHTML as string;
       const referenceCurrencyAmount = (referenceCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement).value;
-      const referenceCurrencyName = referenceCurrencyObject?.querySelector('.select__text')?.innerHTML;
+      if (referenceCurrencyAmount !== '0' && referenceCurrencyAmount) {
+        const selectedCurrencyName = input?.querySelector('.select__text')?.innerHTML as string;
+        const referenceCurrencyName = referenceCurrencyObject?.querySelector('.select__text')?.innerHTML;
 
-      const selectedCurrencyAmount = await getConversionAmount(
-        Number(referenceCurrencyAmount),
-        referenceCurrencyName + selectedCurrencyName,
-      );
+        const selectedCurrencyAmount = await getConversionAmount(
+          Number(referenceCurrencyAmount),
+          referenceCurrencyName + selectedCurrencyName,
+        );
 
-      const selectedCurrencyInput = input?.querySelector('.converter__textinput') as HTMLInputElement;
-      selectedCurrencyInput.value = selectedCurrencyAmount[0].toString();
+        const selectedCurrencyInput = input?.querySelector('.converter__textinput') as HTMLInputElement;
+        selectedCurrencyInput.value = selectedCurrencyAmount[0].toString();
+      }
     })();
   });
 };

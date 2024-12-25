@@ -14,8 +14,12 @@ server.get('/conversion', (req, res) => {
   // Get url parameters
   const params = new URLSearchParams(req.url);
   const [amount, currencies] = [Number(params.get('amount')), params.get('currencies')];
+  // todo: make a more elegant check for null
+  if (amount) {
+    res.jsonp([0, 0, 0]);
+  }
   // Parsing currencies
-  if (amount && currencies) {
+  if (currencies) {
     [firstCurrency, secondCurrency, thirdCurrency, fourthCurrency] = [
       currencies.substring(0, 3),
       currencies.substring(3, 6),
