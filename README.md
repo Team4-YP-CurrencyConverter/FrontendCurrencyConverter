@@ -17,7 +17,10 @@
 
 ```bash
 ## Установка зависимостей
-npm ci
+npm ci 
+
+## При возникновении ошибки
+npm ci --force
 
 ## Запуск json-сервера
 npm run server
