@@ -45,10 +45,11 @@ const handleCurrencyButton = (data: Data[]) => {
         // Initialization a variable of the selected currency input
         const selectedCurrencyObject = (<HTMLElement>e.target!).closest('.converter__input')!.querySelector('.converter__data-container');
         const selectedCurrencyInput = selectedCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement;
+        const oldCurrencyValue = selectedCurrencyInput.value;
 
         // get new currency amount
         const newAmounts = await getConversionAmount(
-          Number(selectedCurrencyInput.value),
+          Number(oldCurrencyValue),
           oldCurrencyName + newCurrencyName,
         );
 
@@ -63,6 +64,7 @@ const handleCurrencyButton = (data: Data[]) => {
             btnToCheck.querySelector('.select__text')!.textContent = rememberedText;
             (<HTMLImageElement>btnToCheck!.querySelector('.select__flag')!).src = rememberedFlag;
             btnToCheck!.closest('.converter__input')!.querySelector('.converter__currency-icon')!.textContent = rememberedIcon;
+            (btnToCheck!.closest('.converter__input')?.querySelector('.converter__textinput') as HTMLInputElement).value = oldCurrencyValue;
           }
         });
       })();
