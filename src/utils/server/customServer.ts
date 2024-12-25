@@ -7,6 +7,10 @@ const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 server.use(middlewares);
 
+server.use((req, res, next) => {
+  setTimeout(next, 1000);
+});
+
 server.get('/conversion', (req, res) => {
   const responseBody: number[] = [];
   let [firstCurrency, secondCurrency, thirdCurrency, fourthCurrency] = ['', '', '', ''];

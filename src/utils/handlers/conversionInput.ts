@@ -30,6 +30,8 @@ const handleConverionInput = (id:string) => {
         unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
           const unselectedCurrency = unselectedCurrencyObject?.querySelector('.select__text')?.innerHTML;
           currencies += unselectedCurrency;
+          // Enable loading banner.
+          unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
         });
 
         const unselectedAmounts = await getConversionAmount(
@@ -43,6 +45,8 @@ const handleConverionInput = (id:string) => {
           const unselectedCurrencyInput = unselectedCurrencyObject.querySelector('.converter__textinput') as HTMLInputElement;
           unselectedCurrencyInput.value = unselectedAmounts[unselectedAmountsIndex].toString();
           unselectedAmountsIndex += 1;
+          // Disable loading banner.
+          unselectedCurrencyObject.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
         });
       } else if (selectedCurrencyInput.value === '') {
         unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {

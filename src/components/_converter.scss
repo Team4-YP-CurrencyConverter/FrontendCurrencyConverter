@@ -28,6 +28,7 @@
         grid: auto 14px/repeat(2, auto);
         gap: 5px 21px;
         align-items: center;
+        position: relative;
     }
     &__input-toogle-hidden {
         visibility: hidden;
@@ -87,6 +88,21 @@
         line-height: 48px;
         letter-spacing: 0.10000000149011612px;
         color: $text-color;
+    }
+    &__loading {
+        position: absolute;
+        top: -1px;
+        width: 502px;
+        height: 76px;
+        border-radius: 12px;
+        z-index: 3;
+        object-fit: scale-down;
+        background-color: rgba(0, 0, 0, 0.3);
+        visibility: hidden;
+
+        &_active {
+            visibility: visible;
+        }
     }
 }
 
