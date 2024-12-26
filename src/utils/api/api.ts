@@ -3,7 +3,7 @@ interface IApi extends RequestInit {
 }
 
 async function api<T>({ endPath, ...options }: IApi): Promise<T> {
-  const response = await fetch(`http://localhost:3000${endPath}`, {
+  const response = await fetch(`http://localhost:8000/api${endPath}`, {
     ...options,
   });
   if (!response.ok) {
