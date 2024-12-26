@@ -3,7 +3,6 @@ import jsonServer from 'json-server';
 import db from './db.json';
 
 const server = jsonServer.create();
-const router = jsonServer.router(db);
 const middlewares = jsonServer.defaults();
 server.use(middlewares);
 
@@ -11,7 +10,7 @@ server.use((_req, _res, next) => {
   setTimeout(next, 1000);
 });
 
-server.get('/conversion', (req, res) => {
+server.get('/api/conversion', (req, res) => {
   const responseBody: number[] = [];
   let [firstCurrency, secondCurrency, thirdCurrency, fourthCurrency] = ['', '', '', ''];
   let conversionRate = {};
@@ -68,8 +67,11 @@ server.get('/conversion', (req, res) => {
   res.jsonp(responseBody);
 });
 
-server.use(router);
-server.listen(3000, () => {
+server.get('/api/currencies', (_req, res) => {
+  res.jsonp(db.currencies);
+});
+
+server.listen(8000, () => {
   // eslint-disable-next-line no-console
   console.log('Custom JSON Server is running');
 });
