@@ -71,7 +71,7 @@ server.get('/api/currencies', (_req, res) => {
   res.jsonp(db.currencies);
 });
 
-server.listen(8000, () => {
+server.listen(3000, () => {
   // eslint-disable-next-line no-console
   console.log('Custom JSON Server is running');
 });
