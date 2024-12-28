@@ -1,4 +1,4 @@
-import getConversionAmount from '../api/conversionApi.ts';
+import { getConversionAmount } from '../api/conversionApi.ts';
 
 /* eslint-disable no-undef */
 const handleAddButton = () => {

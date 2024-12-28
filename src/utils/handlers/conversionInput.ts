@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { CheckIsValid, schemaCurrencyValue } from '../../validation/index.ts';
-import getConversionAmount from '../api/conversionApi.ts';
+import { getConversionAmountDebounce } from '../api/conversionApi.ts';
 import CURRENCYOBJECTIDS from '../constants/currencyObjectIds.ts';
 
 const handleConverionInput = (id:string) => {
@@ -34,10 +34,11 @@ const handleConverionInput = (id:string) => {
           unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
         });
 
-        const unselectedAmounts = await getConversionAmount(
+        const unselectedAmountsFunction = getConversionAmountDebounce(
           Number(selectedCurrencyInput.value),
           currencies,
         );
+        const unselectedAmounts = await unselectedAmountsFunction();
 
         // Recording amounts received from the server in the input of active currencies.
         let unselectedAmountsIndex = 0;
