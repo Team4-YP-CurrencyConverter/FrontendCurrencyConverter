@@ -1,6 +1,6 @@
-import getCurrencies from '../utils/api/currenciesApi.ts';
-import currencyCardRenderer, { cardContainers } from '../utils/api/currencycardrenderer.ts';
-import handleCurrencyButton from '../utils/handlers/currencybutton.ts';
+import getCurrencies from '../api/currenciesApi.ts';
+import currencyCardRenderer, { cardContainers } from '../api/currencycardrenderer.ts';
+import handleCurrencyButton from '../handlers/currencybutton.ts';
 
 async function mainInitialization() {
   const startData = await getCurrencies();

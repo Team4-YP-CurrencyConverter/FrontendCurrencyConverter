@@ -1,6 +1,6 @@
-import getConversionAmount from '../utils/api/conversionApi.ts';
-import CURRENCYOBJECTIDS from '../utils/constants/currencyObjectIds.ts';
-import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
+import getConversionAmount from '../api/conversionApi.ts';
+import CURRENCYOBJECTIDS from '../constants/currencyObjectIds.ts';
+import { CheckIsValid, schemaCurrencyValue } from '../../validation/index.ts';
 
 function findUnselectedCurrencyObjects(id: string) {
   // Initialization variables of all active (but, not selected) cyrrencies.

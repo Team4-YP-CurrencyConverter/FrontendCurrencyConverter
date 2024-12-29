@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import debounce from 'debounce';
-import { updateCurrencyInput } from '../../render/updateCurrencyInput.ts';
+import { updateCurrencyInput } from '../render/updateCurrencyInput.ts';
 
 type updateCurrencyInputArgs = [
   string,

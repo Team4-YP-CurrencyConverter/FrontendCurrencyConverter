@@ -1,4 +1,4 @@
-import { enableLoadingBanner } from '../../render/updateCurrencyInput.ts';
+import { enableLoadingBanner } from '../render/updateCurrencyInput.ts';
 import updateCurrencyInputDebounce from '../debounce/asyncDebounce.ts';
 
 const handleConverionInput = (id:string) => {
