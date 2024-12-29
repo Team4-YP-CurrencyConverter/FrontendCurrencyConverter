@@ -1,6 +1,5 @@
 import getConversionAmount from '../api/conversionApi.ts';
 
-/* eslint-disable no-undef */
 const handleAddButton = () => {
   const addButton = document.querySelector('.button');
 

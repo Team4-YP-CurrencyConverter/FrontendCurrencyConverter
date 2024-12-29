@@ -3,7 +3,6 @@ import updateCurrencyInputDebounce from '../debounce/asyncDebounce.ts';
 
 const handleConverionInput = (id:string) => {
   // Initialization of variables of the selected cyrrency, its input, short name and error field.
-  // eslint-disable-next-line no-undef
   const selectedCurrencyObject = document.getElementById(id);
   const selectedCurrencyInput = selectedCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement;
   const selectedCurrency = selectedCurrencyObject?.querySelector('.select__text');

@@ -26,6 +26,9 @@ export default tseslint.config(
         projectService: true,
         tsconfigRootDir: __dirname,
       },
+      globals: {
+        document: false,
+      }
     },
   },
   {

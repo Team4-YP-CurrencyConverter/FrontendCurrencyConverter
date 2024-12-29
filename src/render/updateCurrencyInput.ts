@@ -8,7 +8,6 @@ function findUnselectedCurrencyObjects(id: string) {
     .filter((unselectedId) => (
       unselectedId !== id
     ))
-    // eslint-disable-next-line no-undef
     .map((unselectedId) => document.getElementById(unselectedId) as HTMLElement)
     .filter((unselectedObjects) => !Object.values(unselectedObjects.classList).includes('converter__input_hidden'));
   return unselectedCurrencyObjects;

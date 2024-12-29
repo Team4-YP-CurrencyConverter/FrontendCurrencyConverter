@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const handleSearchCurrency = () => {
   const inputs = document.querySelectorAll('.popup__input');
   inputs.forEach((input) => {
