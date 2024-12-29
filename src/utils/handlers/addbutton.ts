@@ -32,19 +32,27 @@ const handleAddButton = () => {
         addButton.classList.remove('button__hidden');
       }
 
-      const referenceCurrencyAmount = (referenceCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement).value;
-      if (referenceCurrencyAmount !== '0' && referenceCurrencyAmount) {
-        const selectedCurrencyName = input?.querySelector('.select__text')?.innerHTML as string;
-        const referenceCurrencyName = referenceCurrencyObject?.querySelector('.select__text')?.innerHTML;
+      // Enable loading banner.
+      input?.querySelector('.converter__loading')?.classList.add('converter__loading_active');
 
-        const selectedCurrencyAmount = await getConversionAmount(
+      const referenceCurrencyAmount = (referenceCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement).value;
+      const selectedCurrencyName = input?.querySelector('.select__text')?.innerHTML as string;
+      const referenceCurrencyName = referenceCurrencyObject?.querySelector('.select__text')?.innerHTML;
+
+      let selectedCurrencyAmount: string[] | number[] = [0];
+      if (referenceCurrencyAmount !== '0' && referenceCurrencyAmount) {
+        selectedCurrencyAmount = await getConversionAmount(
           Number(referenceCurrencyAmount),
           referenceCurrencyName + selectedCurrencyName,
         );
-
-        const selectedCurrencyInput = input?.querySelector('.converter__textinput') as HTMLInputElement;
-        selectedCurrencyInput.value = selectedCurrencyAmount[0].toString();
+      } else if (!referenceCurrencyAmount) {
+        selectedCurrencyAmount = [''];
       }
+
+      const selectedCurrencyInput = input?.querySelector('.converter__textinput') as HTMLInputElement;
+      selectedCurrencyInput.value = selectedCurrencyAmount[0].toString();
+      // Disable loading banner.
+      input?.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
     })();
   });
 };
