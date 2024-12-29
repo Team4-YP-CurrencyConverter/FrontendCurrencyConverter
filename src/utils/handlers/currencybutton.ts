@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-type-assertion */
 
-import { getConversionAmount } from '../api/conversionApi.ts';
+import getConversionAmount from '../api/conversionApi.ts';
 
-/* eslint-disable no-undef */
 type Data = {
     id: number;
     flag: string;
@@ -47,6 +46,9 @@ const handleCurrencyButton = (data: Data[]) => {
         const selectedCurrencyInput = selectedCurrencyObject?.querySelector('.converter__textinput') as HTMLInputElement;
         const oldCurrencyValue = selectedCurrencyInput.value;
 
+        // Enable loading banner.
+        selectedCurrencyObject?.closest('.converter__wrapper-input-toogle')!.querySelector('.converter__loading')?.classList.add('converter__loading_active');
+
         // get new currency amount
         const newAmounts = await getConversionAmount(
           Number(oldCurrencyValue),
@@ -67,6 +69,8 @@ const handleCurrencyButton = (data: Data[]) => {
             (btnToCheck!.closest('.converter__input')?.querySelector('.converter__textinput') as HTMLInputElement).value = oldCurrencyValue;
           }
         });
+        // Disable loading banner.
+        selectedCurrencyObject?.closest('.converter__wrapper-input-toogle')!.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
       })();
     });
   });

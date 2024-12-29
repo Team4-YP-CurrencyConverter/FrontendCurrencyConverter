@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const handleSelectButton = () => {
   const selectButtons = document.querySelectorAll('.select');
   selectButtons.forEach((selectButton) => {

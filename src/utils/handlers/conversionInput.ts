@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
-import { CheckIsValid, schemaCurrencyValue } from '../../validation/index.ts';
-import { getConversionAmountDebounce } from '../api/conversionApi.ts';
-import CURRENCYOBJECTIDS from '../constants/currencyObjectIds.ts';
+import { enableLoadingBanner } from '../render/updateCurrencyInput.ts';
+import updateCurrencyInputDebounce from '../debounce/asyncDebounce.ts';
 
 const handleConverionInput = (id:string) => {
   // Initialization of variables of the selected cyrrency, its input, short name and error field.
@@ -10,53 +8,12 @@ const handleConverionInput = (id:string) => {
   const selectedCurrency = selectedCurrencyObject?.querySelector('.select__text');
   const selectedCurrencyError = selectedCurrencyObject?.querySelector('.error') as HTMLSpanElement;
 
-  selectedCurrencyInput?.addEventListener('input', () => {
-    // eslint-disable-next-line no-void
-    void (async () => {
-      // Initialization of variables of all active (but, not selected) cyrrencies.
-      const unselectedCurrencyObjects = CURRENCYOBJECTIDS
-        .filter((unselectedId) => (
-          unselectedId !== id
-        ))
-        .map((unselectedId) => document.getElementById(unselectedId) as HTMLElement)
-        .filter((unselectedObjects) => !Object.values(unselectedObjects.classList).includes('converter__input_hidden'));
-
-      CheckIsValid(schemaCurrencyValue, selectedCurrencyInput.value, selectedCurrencyError);
-      if (!selectedCurrencyError.innerText) {
-        // Initialization of a variable that contains all active currencies.
-        let currencies = '';
-        currencies += selectedCurrency?.innerHTML as string;
-
-        unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
-          const unselectedCurrency = unselectedCurrencyObject?.querySelector('.select__text')?.innerHTML;
-          currencies += unselectedCurrency;
-          // Enable loading banner.
-          unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
-        });
-
-        const unselectedAmountsFunction = getConversionAmountDebounce(
-          Number(selectedCurrencyInput.value),
-          currencies,
-        );
-        const unselectedAmounts = await unselectedAmountsFunction();
-
-        // Recording amounts received from the server in the input of active currencies.
-        let unselectedAmountsIndex = 0;
-        unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
-          const unselectedCurrencyInput = unselectedCurrencyObject.querySelector('.converter__textinput') as HTMLInputElement;
-          unselectedCurrencyInput.value = unselectedAmounts[unselectedAmountsIndex].toString();
-          unselectedAmountsIndex += 1;
-          // Disable loading banner.
-          unselectedCurrencyObject.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
-        });
-      } else if (selectedCurrencyInput.value === '') {
-        unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
-          const unselectedCurrencyInput = unselectedCurrencyObject.querySelector('.converter__textinput') as HTMLInputElement;
-          unselectedCurrencyInput.value = '';
-        });
-      }
-    })();
-  });
+  selectedCurrencyInput?.addEventListener('input', () => enableLoadingBanner(id));
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
+  selectedCurrencyInput?.addEventListener('input', updateCurrencyInputDebounce(
+    [id, selectedCurrency, selectedCurrencyInput, selectedCurrencyError],
+    1000,
+  ));
 };
 
 export default handleConverionInput;

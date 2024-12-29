@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 type Data = {
     id: number;
     flag: string;

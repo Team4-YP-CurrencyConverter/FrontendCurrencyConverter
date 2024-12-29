@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const handleToggleButton = () => {
   const toggleButtons = document.querySelectorAll('.converter__input-toogle');
   toggleButtons.forEach((item) => {

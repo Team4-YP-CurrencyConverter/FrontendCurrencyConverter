@@ -1,5 +1,5 @@
 import './index.css';
-import mainInitialization from './render/mainInitialization.ts';
+import mainInitialization from './utils/render/mainInitialization.ts';
 import CURRENCYOBJECTIDS from './utils/constants/currencyObjectIds.ts';
 import handleAddButton from './utils/handlers/addbutton.ts';
 import handleToggleButton from './utils/handlers/closeinputbutton.ts';
