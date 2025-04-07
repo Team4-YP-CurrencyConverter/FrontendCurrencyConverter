@@ -43,7 +43,11 @@ export default tseslint.config(
   {
     rules: {
       'no-param-reassign': [2, { 'props': false }],
-      'import/no-unresolved': "off",
+      'import/no-unresolved': 'off',
+      'no-underscore-dangle': [2, {
+        'enforceInMethodNames': false,
+        'allowAfterThis': true
+      }],
     }
   },
   {
