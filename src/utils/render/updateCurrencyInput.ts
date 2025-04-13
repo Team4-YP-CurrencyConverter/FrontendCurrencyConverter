@@ -3,7 +3,7 @@ import CURRENCYOBJECTIDS from '../constants/currencyObjectIds.ts';
 import { CheckIsValid, schemaCurrencyValue } from '../../validation/index.ts';
 
 function findUnselectedCurrencyObjects(id: string) {
-  // Initialization variables of all active (but, not selected) cyrrencies.
+  // Initialization variables of all not selected cyrrencies.
   const unselectedCurrencyObjects = CURRENCYOBJECTIDS
     .filter((unselectedId) => (
       unselectedId !== id
@@ -62,4 +62,4 @@ async function updateCurrencyInput(
   }
 }
 
-export { enableLoadingBanner, updateCurrencyInput };
+export { findUnselectedCurrencyObjects, enableLoadingBanner, updateCurrencyInput };
