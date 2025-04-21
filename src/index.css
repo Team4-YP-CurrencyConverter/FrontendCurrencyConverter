@@ -566,6 +566,7 @@ input[type=number]::placeholder {
 }
 
 .button {
+  display: flex;
   width: 184px;
   height: 52px;
   box-sizing: border-box;
@@ -586,9 +587,6 @@ input[type=number]::placeholder {
 }
 .button__hidden {
   display: none;
-}
-.button__visible {
-  display: flex;
 }
 
 .error {

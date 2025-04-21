@@ -9,13 +9,13 @@ class InputCurrencyModule {
     this.name = name;
   }
 
-  static remove() {
+  remove() {
     // Remove a currencie block from converter.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     convertibleCurrency.remove();
   }
 
-  static handleInputDebounce() {
+  handleInputDebounce() {
     // Enable loading banner.
     const unselectedCurrencyObjects = findUnselectedCurrencyObjects(this.name);
     unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
@@ -65,7 +65,7 @@ class InputCurrencyModule {
     overlay.classList.remove('popup__overlay-hidden');
   }
 
-  static setCurrence(currency: {icon: string, flag: string, text: string}) {
+  setCurrence(currency: {icon: string, flag: string, text: string}) {
     // Change currency in selected currency block.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     const currencyIcon = convertibleCurrency.querySelector('converter__currency-icon')!;
