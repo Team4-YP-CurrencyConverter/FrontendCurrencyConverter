@@ -1,18 +1,9 @@
 import api from './api.ts';
+import { ICurrencies } from '../interface/db.ts';
 
-interface ICurrenciesResponse {
-  id: number,
-  name: string,
-  short_name: string,
-  symbol: string,
-  flag: string,
-  exchange_rate: number,
-  er_dynamics: number
-}
-
-async function getCurrencies(): Promise<ICurrenciesResponse[]> {
+async function getCurrencies(): Promise<ICurrencies[]> {
   try {
-    return await api<ICurrenciesResponse[]>({
+    return await api<ICurrencies[]>({
       method: 'GET',
       endPath: '/currencies',
     });
