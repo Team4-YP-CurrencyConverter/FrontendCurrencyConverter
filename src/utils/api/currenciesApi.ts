@@ -1,5 +1,5 @@
 import api from './api.ts';
-import { ICurrencies } from '../interface/db.ts';
+import type { ICurrencies } from '../interface/db.ts';
 
 async function getCurrencies(): Promise<ICurrencies[]> {
   try {

@@ -4,12 +4,12 @@ interface ICurrencies {
   short_name: string,
   symbol: string,
   flag: string,
-  exchange_rate: object | number,
-  er_dynamics: object | number,
+  exchange_rate: number,
+  er_dynamics: number,
 }
 
-interface IDb {
+interface IDB {
   currencies: ICurrencies[],
 }
 
-export type { ICurrencies, IDb };
+export type { ICurrencies, IDB };
