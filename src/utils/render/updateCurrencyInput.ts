@@ -1,15 +1,13 @@
 import getConversionAmount from '../api/conversionApi.ts';
-import CURRENCYOBJECTIDS from '../constants/currencyObjectIds.ts';
 import { CheckIsValid, schemaCurrencyValue } from '../../validation/index.ts';
 
 function findUnselectedCurrencyObjects(id: string) {
   // Initialization variables of all not selected cyrrencies.
-  const unselectedCurrencyObjects = CURRENCYOBJECTIDS
+  const unselectedCurrencyObjects = Array
+    .from(document.querySelectorAll('.converter__wrapper-input-toogle'))
     .filter((unselectedId) => (
-      unselectedId !== id
-    ))
-    .map((unselectedId) => document.getElementById(unselectedId) as HTMLElement)
-    .filter((unselectedObjects) => !Object.values(unselectedObjects.classList).includes('converter__input_hidden'));
+      unselectedId.id !== id
+    ));
   return unselectedCurrencyObjects;
 }
 

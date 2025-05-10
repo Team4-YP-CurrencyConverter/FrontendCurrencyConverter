@@ -27,7 +27,7 @@
       </header>
 
       <main class="main">
-        <section class="curconverter">
+        <section class="curconverter" id="converterSection">
           <div class="curconverter__column-left">
             <h1 class="curconverter__heading">Конвертер валют</h1>
             <p class="curconverter__text">
@@ -35,258 +35,6 @@
               в любое из полей справа. Можно конвертировать одновременно
               до 4 валют.
             </p>
-          </div>
-          <div class="converter">
-            <div class="converter__inputs" id="converterInputs">
-              <div class="converter__wrapper-input-toogle" id="firstСonvertibleCurrency">
-                <div class="converter__input">
-                  <div class="converter__data-container">
-                    <span class="converter__currency-icon">&#8381;</span>
-                    <div class="converter__textinput-container">
-                      <input
-                        class="converter__textinput"
-                        type="number"
-                        placeholder="0.0"
-                      />
-                    </div>
-                  </div>
-                  <button class="select">
-                    <img
-                      src="https://yastatic.net/s3/frontend/country-flag/_/D1ae5Wsm.svg"
-                      alt="флаг государства"
-                      class="select__flag"
-                    />
-                    <span class="select__text">RUB</span>
-                    <img
-                      src="./src/assets/select-arrow.svg"
-                      class="select__arrow"
-                    />
-                  </button>
-                  <div class="popup popup__hidden">
-                    <div class="popup__search">
-                      <input
-                        type="text"
-                        class="popup__input"
-                        placeholder="Поиск валюты"
-                      />
-                      <img
-                        class="popup__search-img"
-                        src="./src/assets/input-search.svg"
-                        alt="лупа"
-                      />
-                      <!-- заменить значение src с помощью JS на input-close.svg -->
-                    </div>
-
-                    <div class="currencycard__container">
-                      <div class="currencycard__wrapper-background"></div>
-                      <div class="currencycard__wrapper" id="firstCurrencyCardWrapper">
-                        <p class="popup__text">Недавние</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./src/assets/input-toogle.svg"
-                  alt="кнопка закрытия"
-                  class="converter__input-toogle converter__input-toogle-hidden"
-                />
-                <!--для скрытия добавить converter__input-toogle-hidden-->
-                <span class="error"></span>
-                <img 
-                  src="./src/assets/loading.svg"
-                  alt="Загрузка"
-                  class="converter__loading"
-                />
-              </div>
-              <div class="converter__wrapper-input-toogle" id="secondConvertibleCurrency">
-                <div class="converter__input">
-                  <div class="converter__data-container">
-                    <span class="converter__currency-icon">&#36;</span>
-                    <div class="converter__textinput-container">
-                      <input
-                        class="converter__textinput"
-                        type="number"
-                        placeholder="0.0"
-                      />
-                    </div>
-                  </div>
-                  <button class="select">
-                    <img
-                      src="https://yastatic.net/s3/frontend/country-flag/_/2FHekp7b.svg"
-                      alt="флаг государства"
-                      class="select__flag"
-                    />
-                    <span class="select__text">USD</span>
-                    <img
-                      src="./src/assets/select-arrow.svg"
-                      class="select__arrow"
-                    />
-                  </button>
-                  <div class="popup popup__hidden">
-                    <div class="popup__search">
-                      <input
-                        type="text"
-                        class="popup__input"
-                        placeholder="Поиск валюты"
-                      />
-                      <img
-                        class="popup__search-img"
-                        src="./src/assets/input-search.svg"
-                        alt="лупа"
-                      />
-                      <!-- заменить значение src с помощью JS на input-close.svg -->
-                    </div>
-
-                    <div class="currencycard__container">
-                      <div class="currencycard__wrapper-background"></div>
-                      <div class="currencycard__wrapper" id="secondCurrencyCardWrapper">
-                        <p class="popup__text">Недавние</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./src/assets/input-toogle.svg"
-                  alt="кнопка закрытия"
-                  class="converter__input-toogle converter__input-toogle-hidden"
-                />
-                <!--для скрытия добавить converter__input-toogle-hidden-->
-                <span class="error"></span>
-                <img 
-                  src="./src/assets/loading.svg"
-                  alt="Загрузка"
-                  class="converter__loading"
-                />
-              </div>
-              <div
-                class="converter__wrapper-input-toogle converter__input_hidden" id="thirdConvertibleCurrency"
-              >
-                <div class="converter__input">
-                  <div class="converter__data-container">
-                    <span class="converter__currency-icon">&#8364;</span>
-                    <div class="converter__textinput-container">
-                      <input
-                        class="converter__textinput"
-                        type="number"
-                        placeholder="0.0"
-                      />
-                    </div>
-                  </div>
-                  <button class="select">
-                    <img
-                      src="https://yastatic.net/s3/frontend/country-flag/_/41CsfCf8.svg"
-                      alt="флаг государства"
-                      class="select__flag"
-                    />
-                    <span class="select__text">EUR</span>
-                    <img
-                      src="./src/assets/select-arrow.svg"
-                      class="select__arrow"
-                    />
-                  </button>
-                  <div class="popup popup__hidden">
-                    <div class="popup__search">
-                      <input
-                        type="text"
-                        class="popup__input"
-                        placeholder="Поиск валюты"
-                      />
-                      <img
-                        class="popup__search-img"
-                        src="./src/assets/input-search.svg"
-                        alt="лупа"
-                      />
-                      <!-- заменить значение src с помощью JS на input-close.svg -->
-                    </div>
-
-                    <div class="currencycard__container">
-                      <div class="currencycard__wrapper-background"></div>
-                      <div class="currencycard__wrapper" id="thirdCurrencyCardWrapper">
-                        <p class="popup__text">Недавние</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./src/assets/input-toogle.svg"
-                  alt="кнопка закрытия"
-                  class="converter__input-toogle"
-                />
-                <!--для скрытия добавить converter__input-toogle-hidden-->
-                <span class="error"></span>
-                <img 
-                  src="./src/assets/loading.svg"
-                  alt="Загрузка"
-                  class="converter__loading"
-                />
-              </div>
-              <div
-                class="converter__wrapper-input-toogle converter__input_hidden" id="fourthСonvertibleCurrency"
-              >
-                <div class="converter__input">
-                  <div class="converter__data-container">
-                    <span class="converter__currency-icon">&#163;</span>
-                    <div class="converter__textinput-container">
-                      <input
-                        class="converter__textinput"
-                        type="number"
-                        placeholder="0.0"
-                      />
-                    </div>
-                  </div>
-                  <button class="select">
-                    <img
-                      src="https://yastatic.net/s3/frontend/country-flag/_/2ttmHdVZ.svg"
-                      alt="флаг государства"
-                      class="select__flag"
-                    />
-                    <span class="select__text">GBP</span>
-                    <img
-                      src="./src/assets/select-arrow.svg"
-                      class="select__arrow"
-                    />
-                  </button>
-                  <div class="popup popup__hidden">
-                    <div class="popup__search">
-                      <input
-                        type="text"
-                        class="popup__input"
-                        placeholder="Поиск валюты"
-                      />
-                      <img
-                        class="popup__search-img"
-                        src="./src/assets/input-search.svg"
-                        alt="лупа"
-                      />
-                      <!-- заменить значение src с помощью JS на input-close.svg -->
-                    </div>
-
-                    <div class="currencycard__container">
-                      <div class="currencycard__wrapper-background"></div>
-                      <div class="currencycard__wrapper" id="fourthCurrencyCardWrapper">
-                        <p class="popup__text">Недавние</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <img
-                  src="./src/assets/input-toogle.svg"
-                  alt="кнопка закрытия"
-                  class="converter__input-toogle"
-                />
-                <!--для скрытия добавить converter__input-toogle-hidden-->
-                <span class="error"></span>
-                <img 
-                  src="./src/assets/loading.svg"
-                  alt="Загрузка"
-                  class="converter__loading"
-                />
-              </div>
-            </div>
-            <button class="button button__visible">
-              <span class="button__text">+</span
-              ><span class="button__text">Добавить</span>
-            </button>
           </div>
         </section>
       </main>
@@ -305,8 +53,17 @@
       </footer>
       <div class="popup__overlay popup__overlay-hidden"></div>
     </div>
+    <template id="converter">
+      <div class="converter">
+        <div class="converter__inputs" id="converterInputs"></div>
+        <button class="button button__visible">
+          <span class="button__text">+</span>
+          <span class="button__text">Добавить</span>
+        </button>
+      </div>
+    </template>
     <template id="templateConvertibleCurrency">
-      <div class="converter__wrapper-input-toogle" id="firstСonvertibleCurrency">
+      <div class="converter__wrapper-input-toogle">
         <div class="converter__input">
           <div class="converter__data-container">
             <span class="converter__currency-icon">&#8381;</span>

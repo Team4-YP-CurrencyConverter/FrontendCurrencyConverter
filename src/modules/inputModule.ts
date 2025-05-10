@@ -5,14 +5,18 @@ import { findUnselectedCurrencyObjects, updateCurrencyInput } from '../utils/ren
 class InputCurrencyModule {
   name: string;
 
+  isRender: boolean;
+
   constructor(name: string) {
     this.name = name;
+    this.isRender = false;
   }
 
   remove() {
     // Remove a currencie block from converter.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     convertibleCurrency.remove();
+    this.isRender = false;
   }
 
   handleInputDebounce() {
@@ -76,9 +80,10 @@ class InputCurrencyModule {
     currencyName.textContent = currency.text;
   }
 
-  static render() {
+  render() {
     const templateConvertibleCurrency: HTMLTemplateElement = document.querySelector('#templateConvertibleCurrency')!;
     const convertibleCurrency = templateConvertibleCurrency.content.cloneNode(true);
+    this.isRender = true;
     return convertibleCurrency;
   }
 }
