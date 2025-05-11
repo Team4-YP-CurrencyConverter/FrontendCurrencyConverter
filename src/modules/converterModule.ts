@@ -1,6 +1,6 @@
 import type InputCurrencyModule from './inputModule.ts';
 
-class CurrenciesBlockModule {
+class ConverterModule {
   // eslint-disable-next-line class-methods-use-this
   update(inputCurrencyModule: InputCurrencyModule) {
     // render inputCurrencyModule and add HTML code in converter.
@@ -65,4 +65,4 @@ class CurrenciesBlockModule {
   }
 }
 
-export default CurrenciesBlockModule;
+export default ConverterModule;
