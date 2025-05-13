@@ -1,15 +1,18 @@
-interface ICurrencies {
-  id: string,
-  name: string,
+interface CurrencyOptions {
   short_name: string,
   symbol: string,
   flag: string,
+}
+
+interface AdvancedCurrencyOptions extends CurrencyOptions {
+  id: string,
+  name: string,
   exchange_rate: number,
   er_dynamics: number,
 }
 
-interface IDB {
-  currencies: ICurrencies[],
+interface DB {
+  currencies: AdvancedCurrencyOptions[],
 }
 
-export type { ICurrencies, IDB };
+export type { CurrencyOptions, AdvancedCurrencyOptions, DB };

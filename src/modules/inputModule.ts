@@ -1,15 +1,19 @@
 /* eslint-disable no-unused-vars */
 import debounce from 'debounce';
 import { findUnselectedCurrencyObjects, updateCurrencyInput } from '../utils/render/updateCurrencyInput.ts';
+import type { CurrencyOptions } from '../utils/interface/db.ts';
 
 class InputCurrencyModule {
   name: string;
 
   isRender: boolean;
 
-  constructor(name: string) {
+  currency: CurrencyOptions;
+
+  constructor(name: string, currency: CurrencyOptions) {
     this.name = name;
     this.isRender = false;
+    this.currency = currency;
   }
 
   remove() {
@@ -69,15 +73,18 @@ class InputCurrencyModule {
     overlay.classList.remove('popup__overlay-hidden');
   }
 
-  setCurrence(currency: {icon: string, flag: string, text: string}) {
+  setCurrence(currency?: CurrencyOptions) {
     // Change currency in selected currency block.
+    if (currency) {
+      this.currency = currency;
+    }
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
-    const currencyIcon = convertibleCurrency.querySelector('converter__currency-icon')!;
-    currencyIcon.textContent = currency.icon;
-    const currencyFlag = convertibleCurrency.querySelector('select__flag') as HTMLImageElement;
-    currencyFlag.src = currency.flag;
-    const currencyName = convertibleCurrency.querySelector('select__text')!;
-    currencyName.textContent = currency.text;
+    const currencyIcon = convertibleCurrency.querySelector('.converter__currency-icon')!;
+    currencyIcon.innerHTML = this.currency.symbol;
+    const currencyFlag = convertibleCurrency.querySelector('.select__flag') as HTMLImageElement;
+    currencyFlag.src = this.currency.flag;
+    const currencyName = convertibleCurrency.querySelector('.select__text')!;
+    currencyName.textContent = this.currency.short_name;
   }
 
   render() {

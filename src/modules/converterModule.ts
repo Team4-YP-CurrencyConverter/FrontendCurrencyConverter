@@ -12,6 +12,9 @@ class ConverterModule {
     // add id to converter__wrapper-input-toogle.
     currencyInput.setAttribute('id', inputCurrencyModule.name);
 
+    // initial currency options in HTML code.
+    inputCurrencyModule.setCurrence();
+
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
     // eslint-disable-next-line @typescript-eslint/no-misused-promises

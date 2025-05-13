@@ -1,9 +1,9 @@
 import api from './api.ts';
-import type { ICurrencies } from '../interface/db.ts';
+import type { AdvancedCurrencyOptions } from '../interface/db.ts';
 
-async function getCurrencies(): Promise<ICurrencies[]> {
+async function getCurrencies(): Promise<AdvancedCurrencyOptions[]> {
   try {
-    return await api<ICurrencies[]>({
+    return await api<AdvancedCurrencyOptions[]>({
       method: 'GET',
       endPath: '/currencies',
     });

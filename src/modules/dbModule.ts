@@ -1,7 +1,7 @@
-import type { IDB, ICurrencies } from '../utils/interface/db.ts';
+import type { DB, AdvancedCurrencyOptions } from '../utils/interface/db.ts';
 
 class DBModule {
-  db: IDB;
+  db: DB;
 
   constructor() {
     this.db = {
@@ -9,7 +9,7 @@ class DBModule {
     };
   }
 
-  addCurrencies(currency: ICurrencies) {
+  addCurrencies(currency: AdvancedCurrencyOptions) {
     const foundCurrentId = this.db.currencies.findIndex(
       (oldCurrency) => oldCurrency.id === currency.id,
     );
@@ -18,6 +18,16 @@ class DBModule {
     } else {
       this.db.currencies[foundCurrentId] = currency;
     }
+  }
+
+  getCurrencyOption(id: string) {
+    const targetCurrency = this.db.currencies.find((currency) => currency.id === id)!;
+    const currencyOption = {
+      short_name: targetCurrency.short_name,
+      symbol: targetCurrency.symbol,
+      flag: targetCurrency.flag,
+    };
+    return currencyOption;
   }
 }
 
