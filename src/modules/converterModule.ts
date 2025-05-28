@@ -1,7 +1,12 @@
 import type InputCurrencyModule from './inputModule.ts';
 
 class ConverterModule {
-  // eslint-disable-next-line class-methods-use-this
+  inputCurrencyModules: InputCurrencyModule[];
+
+  constructor() {
+    this.inputCurrencyModules = [];
+  }
+
   update(inputCurrencyModule: InputCurrencyModule) {
     // render inputCurrencyModule and add HTML code in converter.
     const currencyInputNode = inputCurrencyModule.render();
@@ -18,16 +23,18 @@ class ConverterModule {
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    selectedInput.addEventListener('input', inputCurrencyModule.handleInputDebounce());
+    selectedInput.addEventListener('input', () => inputCurrencyModule.handleInputDebounce());
 
     // add currency HTML code deleting to remove button.
     const removeButton = currencyInput.querySelector('.converter__input-toogle')!;
     removeButton.addEventListener('click', () => inputCurrencyModule.remove());
+
+    this._toogleConverterButtons();
   }
 
-  _handleAddCurrencyButton(inputCurrencyModules: InputCurrencyModule[]) {
+  _handleAddCurrencyButton() {
     // filter with inputCurrencyModule is not render and update first in CurrenciesBlockModule
-    inputCurrencyModules.every((inputCurrencyModule) => {
+    this.inputCurrencyModules.every((inputCurrencyModule) => {
       if (!inputCurrencyModule.isRender) {
         this.update(inputCurrencyModule);
         return false;
@@ -36,23 +43,25 @@ class ConverterModule {
     });
   }
 
-  static toogleAddCurrencyButton() {
+  _toogleConverterButtons() {
+    const inputCurrencyModulesLength = this.inputCurrencyModules.reduce(
+      (result, currentModule) => currentModule.isRender ? result + 1 : result,
+      0
+    );
     const addButton = document.querySelector('.button');
-    addButton?.classList.toggle('button__hidden');
-  }
-
-  static visibleRemoveButton() {
     const removeButtons = document.querySelectorAll('.converter__input-toogle');
-    removeButtons.forEach((removeButton) => {
-      removeButton.classList.remove('.converter__input-toogle-hidden');
-    });
-  }
-
-  static hiddenRemoveButton() {
-    const removeButtons = document.querySelectorAll('.converter__input-toogle');
-    removeButtons.forEach((removeButton) => {
-      removeButton.classList.add('.converter__input-toogle-hidden');
-    });
+    if (inputCurrencyModulesLength <= 2) {
+      removeButtons.forEach((removeButton) => {
+        removeButton.classList.add('converter__input-toogle-hidden');
+      });
+    } else if (inputCurrencyModulesLength === 3) {
+      removeButtons.forEach((removeButton) => {
+        removeButton.classList.remove('converter__input-toogle-hidden');
+      });
+      addButton?.classList.remove('button__hidden');
+    } else {
+      addButton?.classList.add('button__hidden');
+    }
   }
 
   render(inputCurrencyModules: InputCurrencyModule[]) {
@@ -61,10 +70,11 @@ class ConverterModule {
     const converterSection = document.querySelector('#converterSection')!;
     converterSection.appendChild(converterNode);
     const converter = converterSection.lastElementChild!;
-    this.update(inputCurrencyModules[0]);
-    this.update(inputCurrencyModules[1]);
+    this.inputCurrencyModules = inputCurrencyModules;
+    this.update(this.inputCurrencyModules[0]);
+    this.update(this.inputCurrencyModules[1]);
     const addButton = converter.querySelector('.button')!;
-    addButton.addEventListener('click', () => this._handleAddCurrencyButton(inputCurrencyModules));
+    addButton.addEventListener('click', () => this._handleAddCurrencyButton());
   }
 }
 
