@@ -22,7 +22,6 @@ class ConverterModule {
 
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     selectedInput.addEventListener('input', () => inputCurrencyModule.handleInputDebounce());
 
     // add currency HTML code deleting to remove button.
@@ -45,8 +44,8 @@ class ConverterModule {
 
   _toogleConverterButtons() {
     const inputCurrencyModulesLength = this.inputCurrencyModules.reduce(
-      (result, currentModule) => currentModule.isRender ? result + 1 : result,
-      0
+      (result, currentModule) => (currentModule.isRender ? result + 1 : result),
+      0,
     );
     const addButton = document.querySelector('.button');
     const removeButtons = document.querySelectorAll('.converter__input-toogle');
