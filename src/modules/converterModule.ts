@@ -22,12 +22,16 @@ class ConverterModule {
 
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
-    selectedInput.addEventListener('input', () => inputCurrencyModule.handleInputDebounce());
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    selectedInput.addEventListener('input', inputCurrencyModule.handleInputDebounce());
 
     // add currency HTML code deleting to remove button.
     const removeButton = currencyInput.querySelector('.converter__input-toogle')!;
     removeButton.addEventListener('click', () => inputCurrencyModule.remove());
 
+    // update amount of currency.
+    inputCurrencyModule.updateCurrencyInput()
+      .catch((error) => console.error(error)); // eslint-disable-line no-console
     this._toogleConverterButtons();
   }
 

@@ -16,9 +16,7 @@ function updateCurrencyInputDebounce(args: updateCurrencyInputArgs, wait: number
   ) => {
     updateCurrencyInput(...args).then(resolve).catch(reject);
   }, wait);
-  return () => new Promise((resolve, reject) => {
-    debounced(resolve, reject);
-  });
+  return debounced;
 }
 
 export default updateCurrencyInputDebounce;
