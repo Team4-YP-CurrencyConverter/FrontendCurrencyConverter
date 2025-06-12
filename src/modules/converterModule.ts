@@ -26,7 +26,10 @@ class ConverterModule {
 
     // add currency HTML code deleting to remove button.
     const removeButton = currencyInput.querySelector('.converter__input-toogle')!;
-    removeButton.addEventListener('click', () => inputCurrencyModule.remove());
+    removeButton.addEventListener('click', () => {
+      inputCurrencyModule.remove();
+      this._toogleConverterButtons();
+    });
 
     // update amount of currency.
     inputCurrencyModule.updateCurrencyInput()
