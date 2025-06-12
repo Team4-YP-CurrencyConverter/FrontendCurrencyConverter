@@ -45,6 +45,7 @@ export default tseslint.config(
       'no-param-reassign': [2, { 'props': false }],
       'import/no-unresolved': 'off',
       'no-underscore-dangle': [2, { 'allowAfterThis': true }],
+      'no-new': 0,
     }
   },
   {

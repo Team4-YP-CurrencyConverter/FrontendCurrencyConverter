@@ -22,7 +22,6 @@ class ConverterModule {
 
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     selectedInput.addEventListener('input', inputCurrencyModule.handleInputDebounce());
 
     // add currency HTML code deleting to remove button.

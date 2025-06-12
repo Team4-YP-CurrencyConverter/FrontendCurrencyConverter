@@ -33,12 +33,6 @@ class InputCurrencyModule {
   }
 
   handleInputDebounce() {
-    // Enable loading banner.
-    const unselectedCurrencyObjects = findUnselectedCurrencyObjects(this.name);
-    unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
-      unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
-    });
-
     const [
       selectedCurrencyInput,
       selectedCurrency,
@@ -49,9 +43,16 @@ class InputCurrencyModule {
       [this.name, selectedCurrency, selectedCurrencyInput, selectedCurrencyError],
       2000,
     );
-    return () => new Promise((resolve, reject) => {
-      debounced(resolve, reject);
-    });
+    return () => {
+      // Enable loading banner.
+      const unselectedCurrencyObjects = findUnselectedCurrencyObjects(this.name);
+      unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
+        unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
+      });
+      new Promise((resolve, reject) => {
+        debounced(resolve, reject);
+      }).catch((error) => console.error(error)); // eslint-disable-line no-console
+    };
   }
 
   async updateCurrencyInput() {
