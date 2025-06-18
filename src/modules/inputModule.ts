@@ -1,7 +1,8 @@
 import { findUnselectedCurrencyObjects } from '../utils/render/updateCurrencyInput.ts';
 import updateCurrencyInputDebounce from '../utils/debounce/asyncDebounce.ts';
-import type { CurrencyOptions } from '../utils/interface/db.ts';
 import getConversionAmount from '../utils/api/conversionApi.ts';
+import type { CurrencyOptions } from '../utils/interface/db.ts';
+import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
   name: string;
@@ -10,10 +11,13 @@ class InputCurrencyModule {
 
   currency: CurrencyOptions;
 
-  constructor(name: string, currency: CurrencyOptions) {
+  db: DBModule;
+
+  constructor(name: string, currency: CurrencyOptions, db: DBModule) {
     this.name = name;
     this.isRender = false;
     this.currency = currency;
+    this.db = db;
   }
 
   remove() {
@@ -85,23 +89,23 @@ class InputCurrencyModule {
     // Get Arrow, popup and overlay HTML element from currencie block.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     const selectArrow = convertibleCurrency.querySelector('.select__arrow')!;
-    const popup = convertibleCurrency.querySelector('popup')!;
+    const popup = convertibleCurrency.querySelector('.popup')!;
     const overlay = document.querySelector('.popup__overlay')!;
     return [selectArrow, popup, overlay];
   }
 
-  toggleSelect() {
+  openSelect() {
     const [selectArrow, popup, overlay] = this._getSelectElements();
-    selectArrow.classList.toggle('select__arrow-rotated');
-    popup.classList.toggle('popup__hidden');
-    overlay.classList.toggle('popup__overlay-hidden');
+    selectArrow.classList.add('select__arrow-rotated');
+    popup.classList.remove('popup__hidden');
+    overlay.classList.remove('popup__overlay-hidden');
   }
 
   closeSelect() {
     const [selectArrow, popup, overlay] = this._getSelectElements();
     selectArrow.classList.remove('select__arrow-rotated');
-    popup.classList.remove('popup__hidden');
-    overlay.classList.remove('popup__overlay-hidden');
+    popup.classList.add('popup__hidden');
+    overlay.classList.add('popup__overlay-hidden');
   }
 
   setCurrence(currency?: CurrencyOptions) {
@@ -116,6 +120,19 @@ class InputCurrencyModule {
     currencyFlag.src = this.currency.flag;
     const currencyName = convertibleCurrency.querySelector('.select__text')!;
     currencyName.textContent = this.currency.short_name;
+  }
+
+  renderCurrenciesCard() {
+    const currencies = this.db.getAllСurrenciesOption();
+    const currencyTemplate: HTMLTemplateElement = document.querySelector('#currencycard')!;
+    const currenciesHTML = currencies.map((currency) => {
+      const currencyHTML = currencyTemplate.content.cloneNode(true);
+      (<HTMLImageElement>(currencyHTML as HTMLElement).querySelector('.currencycard__flag')).src = currency.flag;
+      (currencyHTML as HTMLElement).querySelector('.currencycard__name')!.textContent = currency.short_name;
+      (currencyHTML as HTMLElement).querySelector('.currencycard__description')!.textContent = currency.name;
+      return currencyHTML;
+    });
+    return currenciesHTML;
   }
 
   render() {

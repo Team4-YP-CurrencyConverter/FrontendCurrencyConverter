@@ -24,10 +24,24 @@ class DBModule {
     const targetCurrency = this.db.currencies.find((currency) => currency.id === id)!;
     const currencyOption = {
       short_name: targetCurrency.short_name,
+      name: targetCurrency.name,
       symbol: targetCurrency.symbol,
       flag: targetCurrency.flag,
     };
     return currencyOption;
+  }
+
+  getAllСurrenciesOption() {
+    const currenciesOption = this.db.currencies.map((currency) => {
+      const currencyOption = {
+        short_name: currency.short_name,
+        name: currency.name,
+        symbol: currency.symbol,
+        flag: currency.flag,
+      };
+      return currencyOption;
+    });
+    return currenciesOption;
   }
 }
 

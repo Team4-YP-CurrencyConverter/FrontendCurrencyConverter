@@ -14,6 +14,8 @@ class ConverterModule {
     converterInputs.appendChild(currencyInputNode);
     const currencyInput = converterInputs.lastElementChild!;
 
+    const inputCurrencyAbortController = new AbortController();
+
     // add id to converter__wrapper-input-toogle.
     currencyInput.setAttribute('id', inputCurrencyModule.name);
 
@@ -22,14 +24,43 @@ class ConverterModule {
 
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
-    selectedInput.addEventListener('input', inputCurrencyModule.handleInputDebounce());
+    selectedInput.addEventListener(
+      'input',
+      inputCurrencyModule.handleInputDebounce(),
+      { signal: inputCurrencyAbortController.signal },
+    );
 
     // add currency HTML code deleting to remove button.
     const removeButton = currencyInput.querySelector('.converter__input-toogle')!;
-    removeButton.addEventListener('click', () => {
-      inputCurrencyModule.remove();
-      this._toogleConverterButtons();
-    });
+    removeButton.addEventListener(
+      'click',
+      () => {
+        inputCurrencyModule.remove();
+        this._toogleConverterButtons();
+        // remove all eventlisteners from inputCurrencyModule.
+        inputCurrencyAbortController.abort();
+      },
+      { signal: inputCurrencyAbortController.signal },
+    );
+
+    const selectButton = currencyInput.querySelector('.select')!;
+    selectButton.addEventListener('click', () => inputCurrencyModule.openSelect(), { signal: inputCurrencyAbortController.signal });
+    const selectOverlay = document.querySelector('.popup__overlay');
+    selectOverlay?.addEventListener('click', () => inputCurrencyModule.closeSelect(), { signal: inputCurrencyAbortController.signal });
+    document.addEventListener(
+      'keyup',
+      (event) => {
+        if (event.code === 'Escape') {
+          inputCurrencyModule.closeSelect();
+        }
+      },
+      { signal: inputCurrencyAbortController.signal },
+    );
+
+    // add currencyCard in wrapper.
+    const currenciesCardWrapper = currencyInput.querySelector('.currencycard__wrapper')!;
+    const currenciesCard = inputCurrencyModule.renderCurrenciesCard();
+    currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
 
     // update amount of currency.
     inputCurrencyModule.updateCurrencyInput()
