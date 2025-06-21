@@ -11,16 +11,10 @@ class ConverterModule {
     // render inputCurrencyModule and add HTML code in converter.
     const currencyInputNode = inputCurrencyModule.render();
     const converterInputs = document.querySelector('#converterInputs')!;
-    converterInputs.appendChild(currencyInputNode);
+    converterInputs.append(currencyInputNode);
     const currencyInput = converterInputs.lastElementChild!;
 
     const inputCurrencyAbortController = new AbortController();
-
-    // add id to converter__wrapper-input-toogle.
-    currencyInput.setAttribute('id', inputCurrencyModule.name);
-
-    // initial currency options in HTML code.
-    inputCurrencyModule.setCurrence();
 
     // add request for currency conversion to currency input.
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
@@ -57,14 +51,6 @@ class ConverterModule {
       { signal: inputCurrencyAbortController.signal },
     );
 
-    // add currencyCard in wrapper.
-    const currenciesCardWrapper = currencyInput.querySelector('.currencycard__wrapper')!;
-    const currenciesCard = inputCurrencyModule.renderCurrenciesCard();
-    currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
-
-    // update amount of currency.
-    inputCurrencyModule.updateCurrencyInput()
-      .catch((error) => console.error(error)); // eslint-disable-line no-console
     this._toogleConverterButtons();
   }
 

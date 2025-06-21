@@ -59,15 +59,20 @@ class InputCurrencyModule {
     };
   }
 
-  async updateCurrencyInput() {
-    const convertibleCurrency = document.querySelector(`#${this.name}`)!;
+  async updateCurrencyInput(cloneConvertibleCurrency?: Node) {
+    let convertibleCurrency;
+    if (cloneConvertibleCurrency) {
+      convertibleCurrency = (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!;
+    } else {
+      convertibleCurrency = document.querySelector(`#${this.name}`)!;
+    }
 
     // Enable loading banner.
     convertibleCurrency.querySelector('.converter__loading')?.classList.add('converter__loading_active');
 
     const firstCurrency = document.querySelectorAll('.converter__wrapper-input-toogle')[0];
-    const firstCurrencyNumber = firstCurrency.querySelector('.converter__textinput') as HTMLInputElement;
-    if (firstCurrency !== convertibleCurrency) {
+    if (firstCurrency) {
+      const firstCurrencyNumber = firstCurrency.querySelector('.converter__textinput') as HTMLInputElement;
       let currencies = '';
       const firstCurrencyText = firstCurrency.querySelector('.select__text')?.innerHTML;
       const convertibleCurrencyText = convertibleCurrency.querySelector('.select__text')?.innerHTML;
@@ -108,12 +113,17 @@ class InputCurrencyModule {
     overlay.classList.add('popup__overlay-hidden');
   }
 
-  setCurrence(currency?: CurrencyOptions) {
+  setCurrence(currency?: CurrencyOptions, cloneConvertibleCurrency?: Node) {
     // Change currency in selected currency block.
     if (currency) {
       this.currency = currency;
     }
-    const convertibleCurrency = document.querySelector(`#${this.name}`)!;
+    let convertibleCurrency;
+    if (cloneConvertibleCurrency) {
+      convertibleCurrency = (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!;
+    } else {
+      convertibleCurrency = document.querySelector(`#${this.name}`)!;
+    }
     const currencyIcon = convertibleCurrency.querySelector('.converter__currency-icon')!;
     currencyIcon.innerHTML = this.currency.symbol;
     const currencyFlag = convertibleCurrency.querySelector('.select__flag') as HTMLImageElement;
@@ -137,9 +147,25 @@ class InputCurrencyModule {
 
   render() {
     const templateConvertibleCurrency: HTMLTemplateElement = document.querySelector('#templateConvertibleCurrency')!;
-    const convertibleCurrency = templateConvertibleCurrency.content.cloneNode(true);
+    const cloneConvertibleCurrency = templateConvertibleCurrency.content.cloneNode(true);
+
+    // add id to converter__wrapper-input-toogle.
+    (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!.setAttribute('id', this.name);
+
+    // initial currency options in HTML code.
+    this.setCurrence(undefined, cloneConvertibleCurrency);
+
+    // add currencyCard in wrapper.
+    const currenciesCardWrapper = (cloneConvertibleCurrency as HTMLElement).querySelector('.currencycard__wrapper')!;
+    const currenciesCard = this.renderCurrenciesCard();
+    currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
+
+    // update amount of currency.
+    this.updateCurrencyInput(cloneConvertibleCurrency)
+      .catch((error) => console.error(error)); // eslint-disable-line no-console
+
     this.isRender = true;
-    return convertibleCurrency;
+    return cloneConvertibleCurrency;
   }
 }
 
