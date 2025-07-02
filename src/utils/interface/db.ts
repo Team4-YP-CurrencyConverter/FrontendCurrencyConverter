@@ -1,4 +1,5 @@
 interface CurrencyOptions {
+  id: string,
   short_name: string,
   name: string,
   symbol: string,
@@ -6,7 +7,6 @@ interface CurrencyOptions {
 }
 
 interface AdvancedCurrencyOptions extends CurrencyOptions {
-  id: string,
   exchange_rate: number,
   er_dynamics: number,
 }

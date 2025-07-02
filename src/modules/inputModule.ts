@@ -1,7 +1,6 @@
 import { findUnselectedCurrencyObjects } from '../utils/render/updateCurrencyInput.ts';
 import updateCurrencyInputDebounce from '../utils/debounce/asyncDebounce.ts';
 import getConversionAmount from '../utils/api/conversionApi.ts';
-import type { CurrencyOptions } from '../utils/interface/db.ts';
 import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
@@ -9,14 +8,14 @@ class InputCurrencyModule {
 
   isRender: boolean;
 
-  currency: CurrencyOptions;
+  currencyId: string;
 
   db: DBModule;
 
-  constructor(name: string, currency: CurrencyOptions, db: DBModule) {
+  constructor(name: string, currencyId: string, db: DBModule) {
     this.name = name;
     this.isRender = false;
-    this.currency = currency;
+    this.currencyId = currencyId;
     this.db = db;
   }
 
@@ -113,30 +112,33 @@ class InputCurrencyModule {
     overlay.classList.add('popup__overlay-hidden');
   }
 
-  setCurrence(currency?: CurrencyOptions, cloneConvertibleCurrency?: Node) {
+  setCurrency(currencyId?: string, cloneConvertibleCurrency?: Node) {
     // Change currency in selected currency block.
-    if (currency) {
-      this.currency = currency;
+    if (currencyId) {
+      this.currencyId = currencyId;
     }
     let convertibleCurrency;
     if (cloneConvertibleCurrency) {
       convertibleCurrency = (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!;
     } else {
       convertibleCurrency = document.querySelector(`#${this.name}`)!;
+      this.closeSelect();
     }
+    const currency = this.db.getCurrencyOption(this.currencyId)[0];
     const currencyIcon = convertibleCurrency.querySelector('.converter__currency-icon')!;
-    currencyIcon.innerHTML = this.currency.symbol;
+    currencyIcon.innerHTML = currency.symbol;
     const currencyFlag = convertibleCurrency.querySelector('.select__flag') as HTMLImageElement;
-    currencyFlag.src = this.currency.flag;
+    currencyFlag.src = currency.flag;
     const currencyName = convertibleCurrency.querySelector('.select__text')!;
-    currencyName.textContent = this.currency.short_name;
+    currencyName.textContent = currency.short_name;
   }
 
   renderCurrenciesCard() {
-    const currencies = this.db.getAllСurrenciesOption();
+    const currencies = this.db.getCurrencyOption();
     const currencyTemplate: HTMLTemplateElement = document.querySelector('#currencycard')!;
     const currenciesHTML = currencies.map((currency) => {
       const currencyHTML = currencyTemplate.content.cloneNode(true);
+      (currencyHTML as HTMLElement).querySelector('.currencycard')!.id = currency.id;
       (<HTMLImageElement>(currencyHTML as HTMLElement).querySelector('.currencycard__flag')).src = currency.flag;
       (currencyHTML as HTMLElement).querySelector('.currencycard__name')!.textContent = currency.short_name;
       (currencyHTML as HTMLElement).querySelector('.currencycard__description')!.textContent = currency.name;
@@ -153,7 +155,7 @@ class InputCurrencyModule {
     (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!.setAttribute('id', this.name);
 
     // initial currency options in HTML code.
-    this.setCurrence(undefined, cloneConvertibleCurrency);
+    this.setCurrency(undefined, cloneConvertibleCurrency);
 
     // add currencyCard in wrapper.
     const currenciesCardWrapper = (cloneConvertibleCurrency as HTMLElement).querySelector('.currencycard__wrapper')!;

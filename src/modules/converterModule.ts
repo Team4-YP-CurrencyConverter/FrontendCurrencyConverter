@@ -51,6 +51,11 @@ class ConverterModule {
       { signal: inputCurrencyAbortController.signal },
     );
 
+    const currenciesCardWrapper = currencyInput.querySelectorAll('.currencycard');
+    currenciesCardWrapper.forEach((currencyCard) => {
+      currencyCard.addEventListener('click', () => inputCurrencyModule.setCurrency(currencyCard.id));
+    });
+
     this._toogleConverterButtons();
   }
 

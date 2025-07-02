@@ -1,4 +1,4 @@
-import type { DB, AdvancedCurrencyOptions } from '../utils/interface/db.ts';
+import type { DB, CurrencyOptions, AdvancedCurrencyOptions } from '../utils/interface/db.ts';
 
 class DBModule {
   db: DB;
@@ -20,20 +20,17 @@ class DBModule {
     }
   }
 
-  getCurrencyOption(id: string) {
-    const targetCurrency = this.db.currencies.find((currency) => currency.id === id)!;
-    const currencyOption = {
-      short_name: targetCurrency.short_name,
-      name: targetCurrency.name,
-      symbol: targetCurrency.symbol,
-      flag: targetCurrency.flag,
-    };
-    return currencyOption;
-  }
-
-  getAllСurrenciesOption() {
-    const currenciesOption = this.db.currencies.map((currency) => {
+  getCurrencyOption(id?: string): CurrencyOptions[] {
+    // If don`t used id, return all currencies.
+    let currencies;
+    if (id) {
+      currencies = this.db.currencies.filter((currency) => currency.id === id)!;
+    } else {
+      currencies = this.db.currencies;
+    }
+    const currenciesOption = currencies.map((currency) => {
       const currencyOption = {
+        id: currency.id,
         short_name: currency.short_name,
         name: currency.name,
         symbol: currency.symbol,
