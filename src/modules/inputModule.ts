@@ -131,9 +131,28 @@ class InputCurrencyModule {
     currencyFlag.src = currency.flag;
     const currencyName = convertibleCurrency.querySelector('.select__text')!;
     currencyName.textContent = currency.short_name;
+    this.removingVisibilityCurrenciesCards(convertibleCurrency);
   }
 
-  renderCurrenciesCard() {
+  removingVisibilityCurrenciesCards(ConvertibleCurrency: Element, ids?: string[]) {
+    // Hidden currencies cards matching with selected currency or by id`s.
+    const currenciesCards = ConvertibleCurrency.querySelectorAll('.currencycard');
+    currenciesCards.forEach((currencyCard) => {
+      let conditionCardsVisibility;
+      if (ids) {
+        conditionCardsVisibility = currencyCard.id in ids || currencyCard.id === this.currencyId;
+      } else {
+        conditionCardsVisibility = currencyCard.id === this.currencyId;
+      }
+      if (conditionCardsVisibility) {
+        currencyCard.classList.add('currencycard__hidden');
+      } else {
+        currencyCard.classList.remove('currencycard__hidden');
+      }
+    });
+  }
+
+  renderCurrenciesCards() {
     const currencies = this.db.getCurrencyOption();
     const currencyTemplate: HTMLTemplateElement = document.querySelector('#currencycard')!;
     const currenciesHTML = currencies.map((currency) => {
@@ -154,13 +173,13 @@ class InputCurrencyModule {
     // add id to converter__wrapper-input-toogle.
     (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!.setAttribute('id', this.name);
 
-    // initial currency options in HTML code.
-    this.setCurrency(undefined, cloneConvertibleCurrency);
-
     // add currencyCard in wrapper.
     const currenciesCardWrapper = (cloneConvertibleCurrency as HTMLElement).querySelector('.currencycard__wrapper')!;
-    const currenciesCard = this.renderCurrenciesCard();
+    const currenciesCard = this.renderCurrenciesCards();
     currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
+
+    // initial currency options in HTML code.
+    this.setCurrency(undefined, cloneConvertibleCurrency);
 
     // update amount of currency.
     this.updateCurrencyInput(cloneConvertibleCurrency)
