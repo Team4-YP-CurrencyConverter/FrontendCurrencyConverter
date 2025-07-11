@@ -53,7 +53,7 @@ class ConverterModule {
 
     const currenciesCardWrapper = currencyInput.querySelectorAll('.currencycard');
     currenciesCardWrapper.forEach((currencyCard) => {
-      currencyCard.addEventListener('click', () => inputCurrencyModule.setCurrency(currencyCard.id));
+      currencyCard.addEventListener('click', () => this._handleSetCurrency(currencyCard.id, inputCurrencyModule));
     });
 
     this._toogleConverterButtons();
@@ -68,6 +68,25 @@ class ConverterModule {
       }
       return true;
     });
+  }
+
+  _handleSetCurrency(currencyId: string, targetInputCurrencyModule: InputCurrencyModule) {
+    const otherInputCurrencyModule = this.inputCurrencyModules.filter(
+      (inputCurrencyModule) => (
+        inputCurrencyModule !== targetInputCurrencyModule && inputCurrencyModule.isRender
+      ),
+    );
+    let isCurrencyNotMatch = true;
+    otherInputCurrencyModule.forEach((inputCurrencyModule) => {
+      if (inputCurrencyModule.currencyId === currencyId) {
+        inputCurrencyModule.setCurrency(targetInputCurrencyModule.currencyId);
+        targetInputCurrencyModule.setCurrency(currencyId);
+        isCurrencyNotMatch = false;
+      }
+    });
+    if (isCurrencyNotMatch) {
+      targetInputCurrencyModule.setCurrency(currencyId);
+    }
   }
 
   _toogleConverterButtons() {
