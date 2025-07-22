@@ -1,3 +1,7 @@
+/* eslint-disable no-unused-vars */
+import debounce from 'debounce';
+import getConversionAmount from '../utils/api/conversionApi.ts';
+import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
 import type InputCurrencyModule from './inputModule.ts';
 
 class ConverterModule {
@@ -20,7 +24,7 @@ class ConverterModule {
     const selectedInput = currencyInput.querySelector('.converter__textinput')!;
     selectedInput.addEventListener(
       'input',
-      inputCurrencyModule.handleInputDebounce(),
+      this._handleInputDebounce(inputCurrencyModule),
       { signal: inputCurrencyAbortController.signal },
     );
 
@@ -70,22 +74,26 @@ class ConverterModule {
     });
   }
 
-  _handleSetCurrency(currencyId: string, targetInputCurrencyModule: InputCurrencyModule) {
-    const otherInputCurrencyModule = this.inputCurrencyModules.filter(
+  _getOtherInputCurrencyModule(selectedInputCurrencyModule: InputCurrencyModule) {
+    return this.inputCurrencyModules.filter(
       (inputCurrencyModule) => (
-        inputCurrencyModule !== targetInputCurrencyModule && inputCurrencyModule.isRender
+        inputCurrencyModule !== selectedInputCurrencyModule && inputCurrencyModule.isRender
       ),
     );
+  }
+
+  _handleSetCurrency(currencyId: string, selectedInputModule: InputCurrencyModule) {
+    const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
     let isCurrencyNotMatch = true;
-    otherInputCurrencyModule.forEach((inputCurrencyModule) => {
+    otherInputCurrencyModules.forEach((inputCurrencyModule) => {
       if (inputCurrencyModule.currencyId === currencyId) {
-        inputCurrencyModule.setCurrency(targetInputCurrencyModule.currencyId);
-        targetInputCurrencyModule.setCurrency(currencyId);
+        inputCurrencyModule.setCurrency(selectedInputModule.currencyId);
+        selectedInputModule.setCurrency(currencyId);
         isCurrencyNotMatch = false;
       }
     });
     if (isCurrencyNotMatch) {
-      targetInputCurrencyModule.setCurrency(currencyId);
+      selectedInputModule.setCurrency(currencyId);
     }
   }
 
@@ -108,6 +116,78 @@ class ConverterModule {
     } else {
       addButton?.classList.add('button__hidden');
     }
+  }
+
+  _handleInputDebounce(selectedInputModule: InputCurrencyModule) {
+    const [
+      selectedCurrencyInput,
+      selectedCurrency,
+      selectedCurrencyError,
+    ] = selectedInputModule.getInputElements();
+    const debounced = this._updateCurrenciesInputsDebounce(
+      selectedInputModule,
+      selectedCurrencyInput,
+      selectedCurrency,
+      selectedCurrencyError,
+    );
+    return () => {
+      CheckIsValid(schemaCurrencyValue, selectedCurrencyInput.value, selectedCurrencyError);
+      const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
+      otherInputCurrencyModules.forEach((unselectedInputModule) => {
+        unselectedInputModule.addLoadingBanner();
+      });
+      new Promise((resolve, reject) => {
+        debounced(resolve, reject);
+      }).catch((error) => console.error(error)); // eslint-disable-line no-console
+    };
+  }
+
+  _updateCurrenciesInputsDebounce(
+    selectedInputModule: InputCurrencyModule,
+    selectedCurrencyInput: HTMLInputElement,
+    selectedCurrency: Element | null,
+    selectedCurrencyError: HTMLSpanElement,
+  ) {
+    const debounced = debounce((
+      resolve: (value: unknown) => void,
+      reject: (reason?: unknown) => void,
+    ) => {
+      const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
+      if (selectedCurrencyError.innerText) {
+        otherInputCurrencyModules.forEach((unselectedInputModule) => {
+          unselectedInputModule.removeLoadingBanner();
+        });
+      } else if (selectedCurrencyInput.value === '0') {
+        otherInputCurrencyModules.forEach((unselectedInputModule) => {
+          unselectedInputModule.updateAmountofCurrency('0');
+        });
+      } else if (!selectedCurrencyError.innerText) {
+        // Initialization of a variable that contains all active currencies.
+        let currencies = '';
+        currencies += selectedCurrency?.innerHTML as string;
+        otherInputCurrencyModules.forEach((unselectedInputModule) => {
+          const unselectedCurrency = document.querySelector(`#${unselectedInputModule.name}`)?.querySelector('.select__text');
+          currencies += unselectedCurrency?.innerHTML as string;
+        });
+        ConverterModule.updateCurrenciesInputs(
+          Number(selectedCurrencyInput.value),
+          currencies,
+          otherInputCurrencyModules,
+        ).then(resolve).catch(reject);
+      }
+    }, 2000);
+    return debounced;
+  }
+
+  static async updateCurrenciesInputs(
+    amount: number,
+    currencies: string,
+    updatedСurrencies: InputCurrencyModule[],
+  ) {
+    const amounts = await getConversionAmount(amount, currencies);
+    updatedСurrencies.forEach((inputCurrency, index) => (
+      inputCurrency.updateAmountofCurrency(String(amounts[index]))
+    ));
   }
 
   render(inputCurrencyModules: InputCurrencyModule[]) {

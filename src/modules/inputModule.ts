@@ -26,7 +26,7 @@ class InputCurrencyModule {
     this.isRender = false;
   }
 
-  _getInputElements(): [HTMLInputElement, Element | null, HTMLSpanElement] {
+  getInputElements(): [HTMLInputElement, Element | null, HTMLSpanElement] {
     // Get input currency, name currency and error.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     const currencyInput = convertibleCurrency.querySelector('.converter__textinput') as HTMLInputElement;
@@ -40,7 +40,7 @@ class InputCurrencyModule {
       selectedCurrencyInput,
       selectedCurrency,
       selectedCurrencyError,
-    ] = this._getInputElements();
+    ] = this.getInputElements();
     // Update all not selected cyrrencies inputs with a 2 second delay.
     const debounced = updateCurrencyInputDebounce(
       [this.name, selectedCurrency, selectedCurrencyInput, selectedCurrencyError],
@@ -110,6 +110,20 @@ class InputCurrencyModule {
     selectArrow.classList.remove('select__arrow-rotated');
     popup.classList.add('popup__hidden');
     overlay.classList.add('popup__overlay-hidden');
+  }
+
+  addLoadingBanner() {
+    document.querySelector(`#${this.name}`)?.querySelector('.converter__loading')?.classList.add('converter__loading_active');
+  }
+
+  removeLoadingBanner() {
+    document.querySelector(`#${this.name}`)?.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
+  }
+
+  updateAmountofCurrency(amountofCurrency: string) {
+    const currencyInput = document.querySelector(`#${this.name}`)?.querySelector('.converter__textinput') as HTMLInputElement;
+    currencyInput.value = amountofCurrency;
+    this.removeLoadingBanner();
   }
 
   setCurrency(currencyId?: string, cloneConvertibleCurrency?: Node) {
