@@ -1,6 +1,3 @@
-import { findUnselectedCurrencyObjects } from '../utils/render/updateCurrencyInput.ts';
-import updateCurrencyInputDebounce from '../utils/debounce/asyncDebounce.ts';
-import getConversionAmount from '../utils/api/conversionApi.ts';
 import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
@@ -33,60 +30,6 @@ class InputCurrencyModule {
     const currency = convertibleCurrency.querySelector('.select__text');
     const currencyError = convertibleCurrency.querySelector('.error') as HTMLSpanElement;
     return [currencyInput, currency, currencyError];
-  }
-
-  handleInputDebounce() {
-    const [
-      selectedCurrencyInput,
-      selectedCurrency,
-      selectedCurrencyError,
-    ] = this.getInputElements();
-    // Update all not selected cyrrencies inputs with a 2 second delay.
-    const debounced = updateCurrencyInputDebounce(
-      [this.name, selectedCurrency, selectedCurrencyInput, selectedCurrencyError],
-      2000,
-    );
-    return () => {
-      // Enable loading banner.
-      const unselectedCurrencyObjects = findUnselectedCurrencyObjects(this.name);
-      unselectedCurrencyObjects.forEach((unselectedCurrencyObject) => {
-        unselectedCurrencyObject.querySelector('.converter__loading')?.classList.add('converter__loading_active');
-      });
-      new Promise((resolve, reject) => {
-        debounced(resolve, reject);
-      }).catch((error) => console.error(error)); // eslint-disable-line no-console
-    };
-  }
-
-  async updateCurrencyInput(cloneConvertibleCurrency?: Node) {
-    let convertibleCurrency;
-    if (cloneConvertibleCurrency) {
-      convertibleCurrency = (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!;
-    } else {
-      convertibleCurrency = document.querySelector(`#${this.name}`)!;
-    }
-
-    // Enable loading banner.
-    convertibleCurrency.querySelector('.converter__loading')?.classList.add('converter__loading_active');
-
-    const firstCurrency = document.querySelectorAll('.converter__wrapper-input-toogle')[0];
-    if (firstCurrency) {
-      const firstCurrencyNumber = firstCurrency.querySelector('.converter__textinput') as HTMLInputElement;
-      let currencies = '';
-      const firstCurrencyText = firstCurrency.querySelector('.select__text')?.innerHTML;
-      const convertibleCurrencyText = convertibleCurrency.querySelector('.select__text')?.innerHTML;
-      currencies += firstCurrencyText;
-      currencies += convertibleCurrencyText;
-      const unselectedAmounts = await getConversionAmount(
-        Number(firstCurrencyNumber.value),
-        currencies,
-      );
-      const convertibleCurrencyInput = convertibleCurrency.querySelector('.converter__textinput') as HTMLInputElement;
-      convertibleCurrencyInput.value = unselectedAmounts[0].toString();
-    }
-
-    // Disable loading banner.
-    convertibleCurrency.querySelector('.converter__loading')?.classList.remove('converter__loading_active');
   }
 
   _getSelectElements() {
@@ -194,10 +137,6 @@ class InputCurrencyModule {
 
     // initial currency options in HTML code.
     this.setCurrency(undefined, cloneConvertibleCurrency);
-
-    // update amount of currency.
-    this.updateCurrencyInput(cloneConvertibleCurrency)
-      .catch((error) => console.error(error)); // eslint-disable-line no-console
 
     this.isRender = true;
     return cloneConvertibleCurrency;

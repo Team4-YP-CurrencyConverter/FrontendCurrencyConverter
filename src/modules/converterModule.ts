@@ -18,6 +18,10 @@ class ConverterModule {
     converterInputs.append(currencyInputNode);
     const currencyInput = converterInputs.lastElementChild!;
 
+    // update amount of currency.
+    this.updateCurrencyInput(inputCurrencyModule)
+      .catch((error) => console.error(error)); // eslint-disable-line no-console
+
     const inputCurrencyAbortController = new AbortController();
 
     // add request for currency conversion to currency input.
@@ -188,6 +192,25 @@ class ConverterModule {
     updatedСurrencies.forEach((inputCurrency, index) => (
       inputCurrency.updateAmountofCurrency(String(amounts[index]))
     ));
+  }
+
+  async updateCurrencyInput(selectedInputModule: InputCurrencyModule) {
+    // Update amount of currency, when only one InputCurrencyModule need to be updated.
+    selectedInputModule.addLoadingBanner();
+    const selectedElement = selectedInputModule.getInputElements();
+    const sourceInputModule = this.inputCurrencyModules.find((inputModule) => (
+      inputModule !== selectedInputModule && inputModule.isRender
+    ));
+    let amount: number[] = [0];
+    if (sourceInputModule) {
+      let currencies = '';
+      const sourceElement = sourceInputModule.getInputElements();
+      currencies += sourceElement[1]?.innerHTML as string;
+      currencies += selectedElement[1]?.innerHTML as string;
+      amount = await getConversionAmount(Number(sourceElement[0].value), currencies);
+    }
+    selectedInputModule.updateAmountofCurrency(String(amount[0]));
+    selectedInputModule.removeLoadingBanner();
   }
 
   render(inputCurrencyModules: InputCurrencyModule[]) {
