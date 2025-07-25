@@ -91,13 +91,21 @@ class ConverterModule {
     let isCurrencyNotMatch = true;
     otherInputCurrencyModules.forEach((inputCurrencyModule) => {
       if (inputCurrencyModule.currencyId === currencyId) {
+        const selectedCurrencyElements = selectedInputModule.getInputElements();
+        const amount = selectedCurrencyElements.inputAmount.value;
+        const otherCurrencyElements = inputCurrencyModule.getInputElements();
+        const otherAmount = otherCurrencyElements.inputAmount.value;
         inputCurrencyModule.setCurrency(selectedInputModule.currencyId);
+        inputCurrencyModule.updateAmountofCurrency(amount);
         selectedInputModule.setCurrency(currencyId);
+        selectedInputModule.updateAmountofCurrency(otherAmount);
         isCurrencyNotMatch = false;
       }
     });
     if (isCurrencyNotMatch) {
       selectedInputModule.setCurrency(currencyId);
+      this.updateCurrencyInput(selectedInputModule)
+        .catch((error) => console.error(error)); // eslint-disable-line no-console
     }
   }
 
