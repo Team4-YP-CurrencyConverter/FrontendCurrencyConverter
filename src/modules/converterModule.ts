@@ -123,19 +123,19 @@ class ConverterModule {
   }
 
   _handleInputDebounce(selectedInputModule: InputCurrencyModule) {
-    const [
-      selectedCurrencyInput,
-      selectedCurrency,
-      selectedCurrencyError,
-    ] = selectedInputModule.getInputElements();
+    const selectedCurrencyHTMLElements = selectedInputModule.getInputElements();
     const debounced = this._updateCurrenciesInputsDebounce(
       selectedInputModule,
-      selectedCurrencyInput,
-      selectedCurrency,
-      selectedCurrencyError,
+      selectedCurrencyHTMLElements.inputAmount,
+      selectedCurrencyHTMLElements.currency,
+      selectedCurrencyHTMLElements.inputError,
     );
     return () => {
-      CheckIsValid(schemaCurrencyValue, selectedCurrencyInput.value, selectedCurrencyError);
+      CheckIsValid(
+        schemaCurrencyValue,
+        selectedCurrencyHTMLElements.inputAmount.value,
+        selectedCurrencyHTMLElements.inputError,
+      );
       const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
       otherInputCurrencyModules.forEach((unselectedInputModule) => {
         unselectedInputModule.addLoadingBanner();
@@ -205,9 +205,9 @@ class ConverterModule {
     if (sourceInputModule) {
       let currencies = '';
       const sourceElement = sourceInputModule.getInputElements();
-      currencies += sourceElement[1]?.innerHTML as string;
-      currencies += selectedElement[1]?.innerHTML as string;
-      amount = await getConversionAmount(Number(sourceElement[0].value), currencies);
+      currencies += sourceElement.currency?.innerHTML as string;
+      currencies += selectedElement.currency?.innerHTML as string;
+      amount = await getConversionAmount(Number(sourceElement.inputAmount.value), currencies);
     }
     selectedInputModule.updateAmountofCurrency(String(amount[0]));
     selectedInputModule.removeLoadingBanner();

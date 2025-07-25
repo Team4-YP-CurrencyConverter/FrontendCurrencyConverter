@@ -1,3 +1,4 @@
+import type CurrencyHTMLElements from '../utils/interface/inputCurrency.ts';
 import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
@@ -23,13 +24,14 @@ class InputCurrencyModule {
     this.isRender = false;
   }
 
-  getInputElements(): [HTMLInputElement, Element | null, HTMLSpanElement] {
+  getInputElements(): CurrencyHTMLElements {
     // Get input currency, name currency and error.
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
-    const currencyInput = convertibleCurrency.querySelector('.converter__textinput') as HTMLInputElement;
+    const inputAmount = convertibleCurrency.querySelector('.converter__textinput') as HTMLInputElement;
     const currency = convertibleCurrency.querySelector('.select__text');
-    const currencyError = convertibleCurrency.querySelector('.error') as HTMLSpanElement;
-    return [currencyInput, currency, currencyError];
+    const inputError = convertibleCurrency.querySelector('.error') as HTMLSpanElement;
+    const currencyHTMLElements = { inputAmount, currency, inputError };
+    return currencyHTMLElements;
   }
 
   _getSelectElements() {
