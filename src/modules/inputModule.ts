@@ -71,18 +71,12 @@ class InputCurrencyModule {
     this.removeLoadingBanner();
   }
 
-  setCurrency(currencyId?: string, cloneConvertibleCurrency?: Node) {
+  setCurrency(currencyId?: string) {
     // Change currency in selected currency block.
     if (currencyId) {
       this.currencyId = currencyId;
     }
-    let convertibleCurrency;
-    if (cloneConvertibleCurrency) {
-      convertibleCurrency = (cloneConvertibleCurrency as HTMLElement).querySelector('.converter__wrapper-input-toogle')!;
-    } else {
-      convertibleCurrency = document.querySelector(`#${this.name}`)!;
-      this.closeSelect();
-    }
+    const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     const currency = this.db.getCurrencyOption(this.currencyId)[0];
     const currencyIcon = convertibleCurrency.querySelector('.converter__currency-icon')!;
     currencyIcon.innerHTML = currency.symbol;
@@ -90,16 +84,20 @@ class InputCurrencyModule {
     currencyFlag.src = currency.flag;
     const currencyName = convertibleCurrency.querySelector('.select__text')!;
     currencyName.textContent = currency.short_name;
-    this.removingVisibilityCurrenciesCards(convertibleCurrency);
+    this.removingVisibilityCurrenciesCards();
+    this.closeSelect();
   }
 
-  removingVisibilityCurrenciesCards(ConvertibleCurrency: Element, ids?: string[]) {
+  removingVisibilityCurrenciesCards(ids?: string[]) {
     // Hidden currencies cards matching with selected currency or by id`s.
-    const currenciesCards = ConvertibleCurrency.querySelectorAll('.currencycard');
+    const currenciesCards = document.querySelector(`#${this.name}`)!.querySelectorAll('.currencycard');
     currenciesCards.forEach((currencyCard) => {
       let conditionCardsVisibility;
       if (ids) {
-        conditionCardsVisibility = currencyCard.id in ids || currencyCard.id === this.currencyId;
+        conditionCardsVisibility = (
+          ids.includes(currencyCard.id)
+          || currencyCard.id === this.currencyId
+        );
       } else {
         conditionCardsVisibility = currencyCard.id === this.currencyId;
       }
@@ -136,9 +134,6 @@ class InputCurrencyModule {
     const currenciesCardWrapper = (cloneConvertibleCurrency as HTMLElement).querySelector('.currencycard__wrapper')!;
     const currenciesCard = this.renderCurrenciesCards();
     currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
-
-    // initial currency options in HTML code.
-    this.setCurrency(undefined, cloneConvertibleCurrency);
 
     this.isRender = true;
     return cloneConvertibleCurrency;

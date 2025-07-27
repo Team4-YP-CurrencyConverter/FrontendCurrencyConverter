@@ -3,12 +3,16 @@ import debounce from 'debounce';
 import getConversionAmount from '../utils/api/conversionApi.ts';
 import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
 import type InputCurrencyModule from './inputModule.ts';
+import DBModule from './dbModule.ts';
 
 class ConverterModule {
   inputCurrencyModules: InputCurrencyModule[];
 
-  constructor() {
+  db: DBModule;
+
+  constructor(db: DBModule) {
     this.inputCurrencyModules = [];
+    this.db = db;
   }
 
   update(inputCurrencyModule: InputCurrencyModule) {
@@ -17,6 +21,9 @@ class ConverterModule {
     const converterInputs = document.querySelector('#converterInputs')!;
     converterInputs.append(currencyInputNode);
     const currencyInput = converterInputs.lastElementChild!;
+
+    // initial currency options in HTML code.
+    inputCurrencyModule.setCurrency();
 
     // update amount of currency.
     this.updateCurrencyInput(inputCurrencyModule)
@@ -56,6 +63,13 @@ class ConverterModule {
           inputCurrencyModule.closeSelect();
         }
       },
+      { signal: inputCurrencyAbortController.signal },
+    );
+
+    const currencyInputSearch = currencyInput.querySelector('.popup__input');
+    currencyInputSearch?.addEventListener(
+      'input',
+      () => this.handleFilterCurrenciesCards(inputCurrencyModule),
       { signal: inputCurrencyAbortController.signal },
     );
 
@@ -219,6 +233,17 @@ class ConverterModule {
     }
     selectedInputModule.updateAmountofCurrency(String(amount[0]));
     selectedInputModule.removeLoadingBanner();
+  }
+
+  handleFilterCurrenciesCards(selectedInputModule: InputCurrencyModule) {
+    const currencies = this.db.getCurrencyOption();
+    const ConvertibleCurrency = document.querySelector(`#${selectedInputModule.name}`)!;
+    const inputFilterTextLC = (ConvertibleCurrency.querySelector('.popup__input') as HTMLInputElement).value.toLowerCase();
+    const currenciesIDS = currencies.filter((currency) => (
+      !(currency.name.toLowerCase().includes(inputFilterTextLC)
+      || currency.short_name.toLowerCase().includes(inputFilterTextLC))
+    )).map((filteredCurrency) => filteredCurrency.id);
+    selectedInputModule.removingVisibilityCurrenciesCards(currenciesIDS);
   }
 
   render(inputCurrencyModules: InputCurrencyModule[]) {
