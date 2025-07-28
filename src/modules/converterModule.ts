@@ -78,6 +78,9 @@ class ConverterModule {
       currencyCard.addEventListener('click', () => this._handleSetCurrency(currencyCard.id, inputCurrencyModule));
     });
 
+    // Update attributes which indicates that module in converterInputs and active.
+    inputCurrencyModule.isRender = true;
+
     this._toogleConverterButtons();
   }
 

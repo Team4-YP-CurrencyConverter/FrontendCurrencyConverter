@@ -135,7 +135,6 @@ class InputCurrencyModule {
     const currenciesCard = this.renderCurrenciesCards();
     currenciesCard.forEach((currencyCard) => currenciesCardWrapper.append(currencyCard));
 
-    this.isRender = true;
     return cloneConvertibleCurrency;
   }
 }
