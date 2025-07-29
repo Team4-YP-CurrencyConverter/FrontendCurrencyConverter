@@ -10,10 +10,10 @@ class InputCurrencyModule {
 
   db: DBModule;
 
-  constructor(name: string, currencyId: string, db: DBModule) {
+  constructor(name: string, db: DBModule) {
     this.name = name;
     this.isRender = false;
-    this.currencyId = currencyId;
+    this.currencyId = '-1';
     this.db = db;
   }
 
@@ -71,11 +71,9 @@ class InputCurrencyModule {
     this.removeLoadingBanner();
   }
 
-  setCurrency(currencyId?: string) {
+  setCurrency(currencyId: string) {
     // Change currency in selected currency block.
-    if (currencyId) {
-      this.currencyId = currencyId;
-    }
+    this.currencyId = currencyId;
     const convertibleCurrency = document.querySelector(`#${this.name}`)!;
     const currency = this.db.getCurrencyOption(this.currencyId)[0];
     const currencyIcon = convertibleCurrency.querySelector('.converter__currency-icon')!;

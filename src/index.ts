@@ -12,14 +12,11 @@ startCurrencies.forEach((currency) => {
   db.addCurrencies(currency);
 });
 
-// Get first 4 Currencies id`s.
-const currenciesId = db.getCurrencyOption().slice(0, 4).map((currency) => currency.id);
-
 const converter = new ConverterModule(db);
-const firstCurrencyInput = new InputCurrencyModule('firstСonvertibleCurrency', currenciesId[0], db);
-const secondCurrencyInput = new InputCurrencyModule('secondConvertibleCurrency', currenciesId[1], db);
-const thirdCurrencyInput = new InputCurrencyModule('thirdConvertibleCurrency', currenciesId[2], db);
-const fourthCurrencyInput = new InputCurrencyModule('fourthСonvertibleCurrency', currenciesId[3], db);
+const firstCurrencyInput = new InputCurrencyModule('firstСonvertibleCurrency', db);
+const secondCurrencyInput = new InputCurrencyModule('secondConvertibleCurrency', db);
+const thirdCurrencyInput = new InputCurrencyModule('thirdConvertibleCurrency', db);
+const fourthCurrencyInput = new InputCurrencyModule('fourthСonvertibleCurrency', db);
 
 const currencyInputs = [
   firstCurrencyInput,

@@ -22,8 +22,11 @@ class ConverterModule {
     converterInputs.append(currencyInputNode);
     const currencyInput = converterInputs.lastElementChild!;
 
-    // initial currency options in HTML code.
-    inputCurrencyModule.setCurrency();
+    // Find first free currency and initial options in HTML code.
+    const currenciesIds = this.db.getCurrencyOption().map((currency) => currency.id);
+    const occupiedIds = this.inputCurrencyModules.map((module) => module.currencyId);
+    const freeId = currenciesIds.find((id) => !occupiedIds.includes(id))!;
+    inputCurrencyModule.setCurrency(freeId);
 
     // update amount of currency.
     this.updateCurrencyInput(inputCurrencyModule)
