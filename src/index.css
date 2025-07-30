@@ -566,6 +566,7 @@ input[type=number]::placeholder {
 }
 
 .button {
+  display: flex;
   width: 184px;
   height: 52px;
   box-sizing: border-box;
@@ -586,9 +587,6 @@ input[type=number]::placeholder {
 }
 .button__hidden {
   display: none;
-}
-.button__visible {
-  display: flex;
 }
 
 .error {
@@ -677,6 +675,7 @@ input[type=number]::placeholder {
 }
 
 .currencycard {
+  display: grid;
   grid-template-columns: 36px 167px;
   gap: 4px;
   cursor: pointer;
@@ -741,9 +740,6 @@ input[type=number]::placeholder {
 }
 .currencycard__hidden {
   display: none;
-}
-.currencycard__visible {
-  display: grid;
 }
 
 body {

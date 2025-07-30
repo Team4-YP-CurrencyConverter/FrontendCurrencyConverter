@@ -4,7 +4,6 @@ async function getConversionAmount(amount: number, currencies: string): Promise<
   try {
     return await api<number[]>({
       method: 'GET',
-      // fix: I don`t now why /conversion?amount=${amount}, return Nan
       endPath: `/conversion?&amount=${amount}&currencies=${currencies}`,
     });
   } catch (error) {
