@@ -71,6 +71,7 @@ class InputCurrencyModule {
     const currencyInput = document.querySelector(`#${this.name}`)?.querySelector('.converter__textinput') as HTMLInputElement;
     currencyInput.value = amountofCurrency;
     this.amountofCurrency = amountofCurrency;
+    this.validationInputAmount();
     this.removeLoadingBanner();
   }
 
