@@ -23,9 +23,12 @@ export default tseslint.config(
   {
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.json',
+        projectService: true,
         tsconfigRootDir: __dirname,
       },
+      globals: {
+        document: false,
+      }
     },
   },
   {
@@ -40,7 +43,9 @@ export default tseslint.config(
   {
     rules: {
       'no-param-reassign': [2, { 'props': false }],
-      'import/no-unresolved': "off",
+      'import/no-unresolved': 'off',
+      'no-underscore-dangle': [2, { 'allowAfterThis': true }],
+      'no-new': 0,
     }
   },
   {

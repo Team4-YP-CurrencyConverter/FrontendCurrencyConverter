@@ -1,4 +1,5 @@
 .currencycard {
+    display: grid;
     grid-template-columns: 36px 167px;
     gap: 4px;
     cursor: pointer;
@@ -39,7 +40,6 @@
         background-color: $main-color;
         width: 16px;
         cursor: pointer;
-
     }
     &__flag {
         width: 36px;
@@ -64,8 +64,4 @@
     &__hidden {
         display: none;
     }
-    &__visible {
-        display: grid;
-    }
-
 }

@@ -1,18 +1,30 @@
 import './index.css';
-import mainInitialization from './render/mainInitialization.ts';
-import CURRENCYOBJECTIDS from './utils/constants/currencyObjectIds.ts';
-import handleAddButton from './utils/handlers/addbutton.ts';
-import handleToggleButton from './utils/handlers/closeinputbutton.ts';
-import handleConverionInput from './utils/handlers/conversionInput.ts';
-import handleSearchCurrency from './utils/handlers/searchcurrency.ts';
-import handleSelectButton from './utils/handlers/selectbutton.ts';
+import ConverterModule from './modules/converterModule.ts';
+import DBModule from './modules/dbModule.ts';
+import InputCurrencyModule from './modules/inputModule.ts';
+import getCurrencies from './utils/api/currenciesApi.ts';
 
-handleSelectButton();
-handleAddButton();
-handleToggleButton();
+const db = new DBModule();
 
-await mainInitialization();
+const startCurrencies = await getCurrencies();
 
-handleSearchCurrency();
+startCurrencies.forEach((currency) => {
+  db.addCurrencies(currency);
+});
 
-CURRENCYOBJECTIDS.forEach((id) => handleConverionInput(id));
+const converter = new ConverterModule(db);
+const firstCurrencyInput = new InputCurrencyModule('firstСonvertibleCurrency', db);
+const secondCurrencyInput = new InputCurrencyModule('secondConvertibleCurrency', db);
+const thirdCurrencyInput = new InputCurrencyModule('thirdConvertibleCurrency', db);
+const fourthCurrencyInput = new InputCurrencyModule('fourthСonvertibleCurrency', db);
+
+const currencyInputs = [
+  firstCurrencyInput,
+  secondCurrencyInput,
+  thirdCurrencyInput,
+  fourthCurrencyInput,
+];
+
+converter.render(currencyInputs);
+
+export default startCurrencies;
