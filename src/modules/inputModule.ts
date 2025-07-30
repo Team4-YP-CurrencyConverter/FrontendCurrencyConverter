@@ -1,4 +1,4 @@
-import type CurrencyHTMLElements from '../utils/interface/inputCurrency.ts';
+import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
 import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
@@ -6,14 +6,20 @@ class InputCurrencyModule {
 
   isRender: boolean;
 
+  amountofCurrency: string;
+
   currencyId: string;
+
+  inputError: string | null;
 
   db: DBModule;
 
   constructor(name: string, db: DBModule) {
     this.name = name;
     this.isRender = false;
+    this.amountofCurrency = '0';
     this.currencyId = '-1';
+    this.inputError = '';
     this.db = db;
   }
 
@@ -24,14 +30,10 @@ class InputCurrencyModule {
     this.isRender = false;
   }
 
-  getInputElements(): CurrencyHTMLElements {
-    // Get input currency, name currency and error.
-    const convertibleCurrency = document.querySelector(`#${this.name}`)!;
-    const inputAmount = convertibleCurrency.querySelector('.converter__textinput') as HTMLInputElement;
-    const currency = convertibleCurrency.querySelector('.select__text');
-    const inputError = convertibleCurrency.querySelector('.error') as HTMLSpanElement;
-    const currencyHTMLElements = { inputAmount, currency, inputError };
-    return currencyHTMLElements;
+  validationInputAmount() {
+    const inputError = document.querySelector(`#${this.name}`)!.querySelector('.error') as HTMLSpanElement;
+    CheckIsValid(schemaCurrencyValue, String(this.amountofCurrency), inputError);
+    this.inputError = inputError.textContent;
   }
 
   _getSelectElements() {
@@ -68,6 +70,7 @@ class InputCurrencyModule {
   updateAmountofCurrency(amountofCurrency: string) {
     const currencyInput = document.querySelector(`#${this.name}`)?.querySelector('.converter__textinput') as HTMLInputElement;
     currencyInput.value = amountofCurrency;
+    this.amountofCurrency = amountofCurrency;
     this.removeLoadingBanner();
   }
 
@@ -108,6 +111,7 @@ class InputCurrencyModule {
   }
 
   renderCurrenciesCards() {
+    // return HTML-code initialization currencies cards.
     const currencies = this.db.getCurrencyOption();
     const currencyTemplate: HTMLTemplateElement = document.querySelector('#currencycard')!;
     const currenciesHTML = currencies.map((currency) => {

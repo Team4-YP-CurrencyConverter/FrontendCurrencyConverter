@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 import debounce from 'debounce';
 import getConversionAmount from '../utils/api/conversionApi.ts';
-import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
 import type InputCurrencyModule from './inputModule.ts';
 import DBModule from './dbModule.ts';
 
@@ -81,14 +80,14 @@ class ConverterModule {
       currencyCard.addEventListener('click', () => this._handleSetCurrency(currencyCard.id, inputCurrencyModule));
     });
 
-    // Update attributes which indicates that module in converterInputs and active.
+    // update attributes which indicates that module in converterInputs and active.
     inputCurrencyModule.isRender = true;
 
     this._toogleConverterButtons();
   }
 
   _handleAddCurrencyButton() {
-    // filter with inputCurrencyModule is not render and update first in CurrenciesBlockModule
+    // filter with inputCurrencyModule is not render and update first in CurrenciesBlockModule.
     this.inputCurrencyModules.every((inputCurrencyModule) => {
       if (!inputCurrencyModule.isRender) {
         this.update(inputCurrencyModule);
@@ -99,6 +98,7 @@ class ConverterModule {
   }
 
   _getOtherInputCurrencyModule(selectedInputCurrencyModule: InputCurrencyModule) {
+    // get all inputCurrencyModule, that unselected and rendered.
     return this.inputCurrencyModules.filter(
       (inputCurrencyModule) => (
         inputCurrencyModule !== selectedInputCurrencyModule && inputCurrencyModule.isRender
@@ -107,16 +107,16 @@ class ConverterModule {
   }
 
   _handleSetCurrency(currencyId: string, selectedInputModule: InputCurrencyModule) {
+    /* if other inputModule has currencyId, then the selected module exchanges data with them.
+    Otherwise, we send a request to the server to get amount of currency. */
     const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
     let isCurrencyNotMatch = true;
-    otherInputCurrencyModules.forEach((inputCurrencyModule) => {
-      if (inputCurrencyModule.currencyId === currencyId) {
-        const selectedCurrencyElements = selectedInputModule.getInputElements();
-        const amount = selectedCurrencyElements.inputAmount.value;
-        const otherCurrencyElements = inputCurrencyModule.getInputElements();
-        const otherAmount = otherCurrencyElements.inputAmount.value;
-        inputCurrencyModule.setCurrency(selectedInputModule.currencyId);
-        inputCurrencyModule.updateAmountofCurrency(amount);
+    otherInputCurrencyModules.forEach((otherInputCurrencyModule) => {
+      if (otherInputCurrencyModule.currencyId === currencyId) {
+        const amount = selectedInputModule.amountofCurrency;
+        const otherAmount = otherInputCurrencyModule.amountofCurrency;
+        otherInputCurrencyModule.setCurrency(selectedInputModule.currencyId);
+        otherInputCurrencyModule.updateAmountofCurrency(amount);
         selectedInputModule.setCurrency(currencyId);
         selectedInputModule.updateAmountofCurrency(otherAmount);
         isCurrencyNotMatch = false;
@@ -130,6 +130,7 @@ class ConverterModule {
   }
 
   _toogleConverterButtons() {
+    // hidden and reveal removeButton and addButton, depending on number of InputModules.
     const inputCurrencyModulesLength = this.inputCurrencyModules.reduce(
       (result, currentModule) => (currentModule.isRender ? result + 1 : result),
       0,
@@ -151,19 +152,13 @@ class ConverterModule {
   }
 
   _handleInputDebounce(selectedInputModule: InputCurrencyModule) {
-    const selectedCurrencyHTMLElements = selectedInputModule.getInputElements();
-    const debounced = this._updateCurrenciesInputsDebounce(
-      selectedInputModule,
-      selectedCurrencyHTMLElements.inputAmount,
-      selectedCurrencyHTMLElements.currency,
-      selectedCurrencyHTMLElements.inputError,
-    );
+    /* initialization debounce when render inputModule. After pressing any button,
+    validation input text, add loading banner to other inputModules and return debounce promise */
+    const selectedInput = document.querySelector(`#${selectedInputModule.name}`)!.querySelector('.converter__textinput') as HTMLInputElement;
+    const debounced = this._updateCurrenciesInputsDebounce(selectedInputModule);
     return () => {
-      CheckIsValid(
-        schemaCurrencyValue,
-        selectedCurrencyHTMLElements.inputAmount.value,
-        selectedCurrencyHTMLElements.inputError,
-      );
+      selectedInputModule.amountofCurrency = selectedInput.value;
+      selectedInputModule.validationInputAmount();
       const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
       otherInputCurrencyModules.forEach((unselectedInputModule) => {
         unselectedInputModule.addLoadingBanner();
@@ -174,35 +169,31 @@ class ConverterModule {
     };
   }
 
-  _updateCurrenciesInputsDebounce(
-    selectedInputModule: InputCurrencyModule,
-    selectedCurrencyInput: HTMLInputElement,
-    selectedCurrency: Element | null,
-    selectedCurrencyError: HTMLSpanElement,
-  ) {
+  _updateCurrenciesInputsDebounce(selectedInputModule: InputCurrencyModule) {
+    // update all other render inputModules with 2 seconds delay.
     const debounced = debounce((
       resolve: (value: unknown) => void,
       reject: (reason?: unknown) => void,
     ) => {
       const otherInputCurrencyModules = this._getOtherInputCurrencyModule(selectedInputModule);
-      if (selectedCurrencyError.innerText) {
+      if (selectedInputModule.inputError) {
         otherInputCurrencyModules.forEach((unselectedInputModule) => {
           unselectedInputModule.removeLoadingBanner();
         });
-      } else if (selectedCurrencyInput.value === '0') {
+      } else if (selectedInputModule.amountofCurrency === '0') {
         otherInputCurrencyModules.forEach((unselectedInputModule) => {
           unselectedInputModule.updateAmountofCurrency('0');
         });
-      } else if (!selectedCurrencyError.innerText) {
+      } else if (!selectedInputModule.inputError) {
         // Initialization of a variable that contains all active currencies.
         let currencies = '';
-        currencies += selectedCurrency?.innerHTML as string;
+        currencies += this.db.getCurrencyOption(selectedInputModule.currencyId)[0].short_name;
+        // currencies += selectedCurrency?.innerHTML as string;
         otherInputCurrencyModules.forEach((unselectedInputModule) => {
-          const unselectedCurrency = document.querySelector(`#${unselectedInputModule.name}`)?.querySelector('.select__text');
-          currencies += unselectedCurrency?.innerHTML as string;
+          currencies += this.db.getCurrencyOption(unselectedInputModule.currencyId)[0].short_name;
         });
         ConverterModule.updateCurrenciesInputs(
-          Number(selectedCurrencyInput.value),
+          Number(selectedInputModule.amountofCurrency),
           currencies,
           otherInputCurrencyModules,
         ).then(resolve).catch(reject);
@@ -216,6 +207,7 @@ class ConverterModule {
     currencies: string,
     updatedСurrencies: InputCurrencyModule[],
   ) {
+    // pull api-request, after that update amount of currency in inputModules.
     const amounts = await getConversionAmount(amount, currencies);
     updatedСurrencies.forEach((inputCurrency, index) => (
       inputCurrency.updateAmountofCurrency(String(amounts[index]))
@@ -223,25 +215,24 @@ class ConverterModule {
   }
 
   async updateCurrencyInput(selectedInputModule: InputCurrencyModule) {
-    // Update amount of currency, when only one InputCurrencyModule need to be updated.
+    // update amount of currency, when only one InputCurrencyModule need to be updated.
     selectedInputModule.addLoadingBanner();
-    const selectedElement = selectedInputModule.getInputElements();
     const sourceInputModule = this.inputCurrencyModules.find((inputModule) => (
       inputModule !== selectedInputModule && inputModule.isRender
     ));
     let amount: number[] = [0];
     if (sourceInputModule) {
       let currencies = '';
-      const sourceElement = sourceInputModule.getInputElements();
-      currencies += sourceElement.currency?.innerHTML as string;
-      currencies += selectedElement.currency?.innerHTML as string;
-      amount = await getConversionAmount(Number(sourceElement.inputAmount.value), currencies);
+      currencies += this.db.getCurrencyOption(sourceInputModule.currencyId)[0].short_name;
+      currencies += this.db.getCurrencyOption(selectedInputModule.currencyId)[0].short_name;
+      amount = await getConversionAmount(Number(sourceInputModule.amountofCurrency), currencies);
     }
     selectedInputModule.updateAmountofCurrency(String(amount[0]));
     selectedInputModule.removeLoadingBanner();
   }
 
   handleFilterCurrenciesCards(selectedInputModule: InputCurrencyModule) {
+    // update visibility of currenciesCards, depending on popup__input text.
     const currencies = this.db.getCurrencyOption();
     const ConvertibleCurrency = document.querySelector(`#${selectedInputModule.name}`)!;
     const inputFilterTextLC = (ConvertibleCurrency.querySelector('.popup__input') as HTMLInputElement).value.toLowerCase();
@@ -253,6 +244,7 @@ class ConverterModule {
   }
 
   render(inputCurrencyModules: InputCurrencyModule[]) {
+    // initialization converterModule and two inputModules and append in converter section.
     const templateConverter: HTMLTemplateElement = document.querySelector('#converter')!;
     const converterNode = templateConverter.content.cloneNode(true);
     const converterSection = document.querySelector('#converterSection')!;
