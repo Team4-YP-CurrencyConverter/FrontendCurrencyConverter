@@ -1,4 +1,4 @@
-import { CheckIsValid, schemaCurrencyValue } from '../validation/index.ts';
+import { CheckIsValid, schemaCurrencyValue } from '../utils/validation/index.ts';
 import type DBModule from './dbModule.ts';
 
 class InputCurrencyModule {
