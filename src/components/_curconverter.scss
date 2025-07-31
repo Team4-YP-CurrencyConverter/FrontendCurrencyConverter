@@ -1,0 +1,25 @@
+.curconverter {
+  padding: 170px 0;
+  display: flex;
+  justify-content: space-between;
+  width: 1120px;
+  margin: 0 auto;
+  &__column-left {
+    width: 472px;
+  }
+  &__heading {
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 80px;
+    letter-spacing: -0.11428570002317429px;
+    color: $text-color;
+    margin: 22px 0 28px;
+  }
+  &__text {
+    color: $text-color;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    margin: 0;
+  }
+}
