@@ -3,8 +3,7 @@
 > На стадии разработки.
 
 Веб-часть сервиса в котором вы можете отследить сколько стоят ваши деньги в другой валюте.  
-[Репозиторий сервера проекта.](https://github.com/Team4-YP-CurrencyConverter/BackendCurrencyConverter)  
-[Сайт.](https://goconvert.zapto.org/)
+[Репозиторий сервера проекта.](https://github.com/Team4-YP-CurrencyConverter/BackendCurrencyConverter)
 
 ## Технологии
 
