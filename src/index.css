@@ -344,10 +344,21 @@ template {
   font-style: normal;
   font-display: swap;
 }
+.page {
+  font-family: "Nunito Sans", sans-serif;
+  background-color: #f4f5f9;
+  height: 100vh;
+  min-height: 956px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .header {
-  width: 1120px;
-  margin: 0 auto;
+  width: 80%;
   min-height: 135px;
+  padding: 0 10%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -365,28 +376,24 @@ template {
 }
 
 .main {
-  background-color: #f4f5f9;
+  width: 80%;
   min-height: 500px;
 }
 
 .footer {
+  width: 80%;
   min-height: 175px;
+  padding: 0 10%;
   background-color: #4379ee;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .footer__copy {
   font-size: 20px;
   font-weight: 400;
   line-height: 24px;
   color: #f4f5f9;
-}
-.footer__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 1120px;
-  margin: 0 auto;
 }
 
 .curconverter {
@@ -740,10 +747,6 @@ input[type=number]::placeholder {
 }
 .currencycard__hidden {
   display: none;
-}
-
-body {
-  font-family: Nunito Sans, sans-serif;
 }
 
 /*# sourceMappingURL=index.css.map */

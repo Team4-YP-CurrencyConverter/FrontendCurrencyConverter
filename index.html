@@ -6,53 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CurrencyConverter</title>
   </head>
-  <body>
-    <div id="app">
-      <header class="header">
-        <div class="header__logo">
-          <img
-            src="./src/assets/logo-header.svg"
-            alt="Логотип CurrConverter"
-            class="header__logo-img"
-          />
+  <body class="page">
+    <header class="header">
+      <div class="header__logo">
+        <img
+          src="./src/assets/logo-header.svg"
+          alt="Логотип CurrConverter"
+          class="header__logo-img"
+        />
+      </div>
+
+      <nav class="header__nav">
+        <ul class="header__nav-list">
+          <li class="header__nav-item">
+            <a href="#" class="header__nav-link">Конвертер</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <section class="curconverter" id="converterSection">
+        <div class="curconverter__column-left">
+          <h1 class="curconverter__heading">Конвертер валют</h1>
+          <p class="curconverter__text">
+            Для конвертации валюты по текущему курсу впишите&nbsp;сумму
+            в любое из полей справа. Можно конвертировать одновременно
+            до 4 валют.
+          </p>
         </div>
+      </section>
+    </main>
 
-        <nav class="header__nav">
-          <ul class="header__nav-list">
-            <li class="header__nav-item">
-              <a href="#" class="header__nav-link">Конвертер</a>
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <main class="main">
-        <section class="curconverter" id="converterSection">
-          <div class="curconverter__column-left">
-            <h1 class="curconverter__heading">Конвертер валют</h1>
-            <p class="curconverter__text">
-              Для конвертации валюты по текущему курсу впишите&nbsp;сумму
-              в любое из полей справа. Можно конвертировать одновременно
-              до 4 валют.
-            </p>
-          </div>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <div class="footer__container">
-          <div class="footer__logo">
-            <img
-              src="./src/assets/logo-footer.svg"
-              alt="Логотип CurrConverter"
-              class="footer__logo-img"
-            />
-          </div>
-          <p class="footer__copy">&copy; 2024</p>
-        </div>
-      </footer>
-      <div class="popup__overlay popup__overlay-hidden"></div>
-    </div>
+    <footer class="footer">
+      <div class="footer__logo">
+        <img
+          src="./src/assets/logo-footer.svg"
+          alt="Логотип CurrConverter"
+          class="footer__logo-img"
+        />
+      </div>
+      <p class="footer__copy">&copy; 2024</p>
+    </footer>
+    <div class="popup__overlay popup__overlay-hidden"></div>
     <template id="converter">
       <div class="converter">
         <div class="converter__inputs" id="converterInputs"></div>

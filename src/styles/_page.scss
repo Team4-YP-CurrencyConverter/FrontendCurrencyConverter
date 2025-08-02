@@ -1,0 +1,10 @@
+.page {
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: $mono-color;
+  height: 100vh;
+  min-height: 956px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,8 +1,11 @@
 .footer {
+  width: 80%;
   min-height: 175px;
+  padding: 0 10%;
   background-color: $main-color;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   &__copy {
     font-size: 20px;
@@ -10,12 +13,5 @@
     line-height: 24px;
 
     color: $mono-color;
-  }
-  &__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 1120px;
-    margin: 0 auto;
   }
 }
