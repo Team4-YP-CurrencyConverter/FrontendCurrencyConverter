@@ -1,0 +1,35 @@
+@mixin title1() {
+  font-size: 68px;
+  line-height: 80px;
+  font-weight: 700;
+}
+
+@mixin title2() {
+  font-size: 36px;
+  line-height: 120%;
+  font-weight: 700;
+}
+
+@mixin title3() {
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 600;
+}
+
+@mixin subtitle($weight: 400) {
+  font-size: 20px;
+  line-height: 120%;
+  font-weight: $weight;
+}
+
+@mixin textregular() {
+  font-size: 14px;
+  line-height: 120%;
+  font-size: 400;
+}
+
+@mixin textsemibold() {
+  font-size: 16px;
+  line-height: 120%;
+  font-weight: 600;
+}
