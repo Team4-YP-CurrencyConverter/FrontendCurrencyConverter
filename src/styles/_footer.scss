@@ -1,17 +1,14 @@
 .footer {
-  width: 80%;
+  width: 77.8%;
   min-height: 175px;
-  padding: 0 10%;
+  padding: 0 11.1%;
   background-color: $main-color;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   &__copy {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-
     color: $mono-color;
+    @include subtitle;
   }
 }
