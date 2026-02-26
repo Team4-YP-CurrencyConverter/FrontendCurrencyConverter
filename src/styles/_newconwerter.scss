@@ -1,0 +1,23 @@
+.converter {
+  display: grid;
+  grid: repeat(2, 1fr);
+  &__title {
+    color: $text-color;
+    @include title1;
+  }
+  &__description {
+    color: $text-color;
+    @include subtitle($weight: 500);
+  }
+  &__container {
+    width: 38.2%;
+    background-color: $light-mono-color;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+  }
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+  }
+}
